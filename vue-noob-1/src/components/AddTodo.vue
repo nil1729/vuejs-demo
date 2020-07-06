@@ -27,6 +27,9 @@ export default {
 	methods: {
 		handleSubmit(e) {
 			e.preventDefault();
+			if (this.title.trim().length === 0) {
+				return;
+			}
 			const newTodo = {
 				id: uuidv4(),
 				title: this.title,
