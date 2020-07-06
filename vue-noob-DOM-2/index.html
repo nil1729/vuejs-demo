@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using VueJS to Interact with the DOM</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.min.css">
+    <style>
+        ::-webkit-scrollbar {
+            width: 0;
+        }
+
+        * {
+            user-select: none;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="text-center text-info display-4 mb-3">Using VueJS to Interact with the DOM</div>
+    <!-- First Lesson -->
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">1. Understanding VueJS Templates</h5>
+        <hr>
+        <div id="dom-1">
+            <p class="lead">{{ title }}</p>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-1">
+                    <p>{{ title }}</p>
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-1',
+                        data: {
+                            title: 'Hello Vue JS'
+                        }
+                    })
+                </script>
+            </xmp>
+        </div>
+        <script>
+            new Vue({
+                el: '#dom-1',
+                data: {
+                    title: 'Hello Vue JS'
+                }
+            })
+        </script>
+    </div>
+
+
+    <!-- Second Lesson -->
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">2. How the VueJS Template Syntax and Instance Work Together</h5>
+        <hr>
+        <div id="dom-2">
+            <p class="lead">{{ sayHello() }}</p>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-2">
+                    <p>{{ sayHello() }}</p>
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-2',
+                        data: {
+                            title: 'Hello Vue JS'
+                        },
+                        methods: {
+                            sayHello() {
+                                return this.title
+                            }
+                        }
+                    })
+                </script>
+            </xmp>
+        </div>
+        <script>
+            new Vue({
+                el: '#dom-2',
+                data: {
+                    title: 'Hello Vue JS'
+                },
+                methods: {
+                    sayHello() {
+                        return this.title
+                    }
+                }
+            })
+        </script>
+    </div>
+</body>
+
+</html>
