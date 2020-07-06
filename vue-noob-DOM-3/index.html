@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using VueJS to Interact with the DOM</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.min.css">
+    <style>
+        ::-webkit-scrollbar {
+            width: 0;
+        }
+
+        * {
+            user-select: none;
+        }
+
+        button {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="text-center text-info display-4 mb-3">
+        Using VueJS to Interact with the DOM - 3</div>
+    <!-- First Lesson -->
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            1. Writing JavaScript Code in the Templates
+        </h5>
+        <hr>
+        <div id="dom-1">
+            <button v-on:click="increase(4)" class="btn btn-sm btn-primary">Increase by 4</button>
+            <button v-on:click="counter++" class="btn btn-sm btn-success">Increase by 1</button>
+            <p class="lead mt-1 mb-0">Counter : {{ counter }}</p>
+            <p class="lead mt-1 mb-0">Counter 3x : {{ counter * 3 }}</p>
+            <p class="lead mt-1 mb-0">Statement : {{ counter > 50 ? 'Greater than 50' : 'Smaller than 50' }}</p>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-1">
+                    <button v-on:click="increase(4)" class="btn btn-sm btn-primary">Increase by 4</button>
+                    <button v-on:click="counter++" class="btn btn-sm btn-success">Increase by 1</button>
+                    <p class="lead mt-1 mb-0">Counter : {{ counter }}</p>
+                    <p class="lead mt-1 mb-0">Counter 3x : {{ counter * 3 }}</p>
+                    <p class="lead mt-1 mb-0">Statement : {{ counter > 50 ? 'Greater than 50' : 'Smaller than 50' }}</p>
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-1',
+                        data: {
+                            counter: 0
+                        },
+                        methods: {
+                            increase: function (step) {
+                                this.counter += step;
+                            }
+                        }
+                    });
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+    <!-- First Lesson -->
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            2. Using Two-Way-Binding
+        </h5>
+        <hr>
+        <div id="dom-2">
+            <div class="form-group">
+                <label class="form-control-label" for="inputSuccess1">Type Something here</label>
+                <input v-model="text" type="text" class="form-control">
+            </div>
+            <p class="lead text-danger">
+                {{ text }}
+            </p>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-2">
+                    <div class="form-group">
+                        <label class="form-control-label" for="inputSuccess1">Type Something here</label>
+                        <input v-model="text" type="text" class="form-control">
+                    </div>
+                    <p class="lead text-danger">
+                        {{ text }}
+                    </p>
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-2',
+                        data: {
+                            text: 'I love Vue JS'
+                        }
+                    });;
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+    <!-- First Lesson -->
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            3. Reacting to Changes with Computed Properties
+        </h5>
+        <hr>
+        <div id="dom-3">
+            <button v-on:click="counter++" class="btn btn-sm btn-primary">Increase Counter</button>
+            <button v-on:click="counter--" class="btn btn-sm btn-info">Decrease Counter</button>
+            <button v-on:click="secondCounter++" class="btn btn-sm btn-success">Increase Second Counter</button>
+            <p class="lead mt-2 mb-0">Counter : {{ counter }}</p>
+            <p class="lead mb-0">Second Counter : {{ secondCounter }}</p>
+            <p class="lead mb-0">Counter Result ( Methods ) <span class="text-primary">{{ result() }}</span></p>
+            <p class="lead mb-0">Counter Result ( Computed ) <span class="text-primary">{{ output }}</span></p>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-3">
+                    v id="dom-3">
+                    <button v-on:click="counter++" class="btn btn-sm btn-primary">Increase Counter</button>
+                    <button v-on:click="counter--" class="btn btn-sm btn-info">Decrease Counter</button>
+                    <button v-on:click="secondCounter++" class="btn btn-sm btn-success">Increase Second Counter</button>
+                    <p class="lead mt-2 mb-0">Counter : {{ counter }}</p>
+                    <p class="lead mb-0">Second Counter : {{ secondCounter }}</p>
+                    <p class="lead mb-0">Counter Result ( Methods ) <span class="text-primary">{{ result() }}</span></p>
+                    <p class="lead mb-0">Counter Result ( Computed ) <span class="text-primary">{{ output }}</span></p>
+
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-3',
+                        data: {
+                            counter: 0,
+                            secondCounter: 0
+                        },
+                        computed: {
+                            output: function () {
+                                console.log('Computed')
+                                return this.counter > 5 ? 'Greater than 5' : 'Smaller than 5'
+                            }
+                        },
+                        methods: {
+                            result: function () {
+                                console.log('Methods')
+                                return this.counter > 5 ? 'Greater than 5' : 'Smaller than 5'
+                            }
+                        }
+                    });
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+    <!-- First Lesson -->
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            4. An Alternative to Computed Properties: Watching for Changes
+        </h5>
+        <hr>
+        <div id="dom-4">
+            <button v-on:click="counter++" class="btn btn-primary">Click Me</button>
+            <p class="lead mt-2 mb-0">Counter : {{ counter }}</p>
+            <p class="lead mb-0">{{ output }}</p>
+            <p class="lead mb-0">{{ watchPost }}</p>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-4">
+                    <button v-on:click="counter++" class="btn btn-primary">Click Me</button>
+                    <p class="lead mt-2 mb-0">Counter : {{ counter }}</p>
+                    <p class="lead mb-0">{{ output }}</p>
+                    <p class="lead mb-0">{{ watchPost }}</p>
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-4',
+                        data: {
+                            counter: 0,
+                            computedPost: '',
+                            watchPost: ''
+                        },
+                        computed: {
+                            output: async function () {
+                                console.log(this.counter);
+
+                                const res = await fetch('https://jsonplaceholder.typicode.com/posts/1');
+                                const JSONData = await res.json();
+
+                                this.computedPost = JSONData.title;
+                                return this.computedPost;
+                            }
+                        },
+                        watch: {
+                            counter: async function (value) {
+                                const vm = this;
+
+                                const res = await fetch('https://jsonplaceholder.typicode.com/posts/' +
+                                    value);
+                                const JSONData = await res.json();
+                                console.log(JSONData.title, '==== Watch');
+
+                                vm.watchPost = JSONData.title;
+                            }
+                        }
+                    });
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            5. Saving Time with Shorthands
+        </h5>
+        <hr>
+        <div id="dom-5">
+            <button @click="counter++" class="btn btn-primary">Click Me</button>
+            <p class="lead mt-2">Counter : {{ counter }}</p>
+            <a :href="link" target="_blank" class="lead">Google</a>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-5">
+                    <button @click="counter++" class="btn btn-primary">Click Me</button>
+                    <p class="lead mt-2">Counter : {{ counter }}</p>
+                    <a :href="link" target="_blank" class="lead">Google</a>
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-5',
+                        data: {
+                            link: 'https://google.com',
+                            counter: 0
+                        }
+                    });
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+    <script src="./scripts.js"></script>
+</body>
