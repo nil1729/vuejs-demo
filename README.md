@@ -4,13 +4,13 @@ Simple Projects done by me while learning `Vue JS`.
 
 ---
 
-#### _Task 1 ( TODO List App )_
+#### Task 1 ( TODO List App )
 
 - This Site is Live [here](https://vue-noob-1.netlify.app/).
 
 ---
 
-### _Setup on Local Enviroment_
+### Setup on Local Enviroment
 
 ```
 $ git clone https://github.com/nil1729/Vue-Noob.git
@@ -22,13 +22,13 @@ $ npm run serve
 
 ---
 
-### _Learning Vue JS_
+### Learning Vue JS
 
-- <ins>Using VueJS to Interact with the DOM</ins>
-  - Part - 1 [Live here](https://nil1729.github.io/Vue-Noob/vue-noob-DOM-1/)
-  - Part - 2 [Live here](https://nil1729.github.io/Vue-Noob/vue-noob-DOM-2/)
-  - Part - 3 [Live here](https://nil1729.github.io/Vue-Noob/vue-noob-DOM-3/)
-  - Part - 4 [Live here](https://nil1729.github.io/Vue-Noob/vue-noob-DOM-4/)
+1. Using VueJS to Interact with the DOM
+   - Part - 1 [Live here](https://nil1729.github.io/Vue-Noob/vue-noob-DOM-1/)
+   - Part - 2 [Live here](https://nil1729.github.io/Vue-Noob/vue-noob-DOM-2/)
+   - Part - 3 [Live here](https://nil1729.github.io/Vue-Noob/vue-noob-DOM-3/)
+   - Part - 4 [Live here](https://nil1729.github.io/Vue-Noob/vue-noob-DOM-4/)
 
 ---
 
