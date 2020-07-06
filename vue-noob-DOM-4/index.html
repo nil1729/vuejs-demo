@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using VueJS to Interact with the DOM</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.min.css">
+    <style>
+        ::-webkit-scrollbar {
+            width: 0;
+        }
+
+        * {
+            user-select: none;
+        }
+
+        button {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        /* ----- For Vue Course----- */
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="text-center text-info display-4 mb-3">
+        Using VueJS to Interact with the DOM - 4</div>
+    <!-- First Lesson -->
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            1. Dynamic Styling with CSS Classes - Basics
+        </h5>
+        <hr>
+        <div id="dom-1">
+            <div class="p-4 border border-secondary" @click="bgRed = !bgRed" :class="{'bg-primary': bgRed}"></div>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-1">
+                    <div class="p-4 border border-secondary" @click="bgRed = !bgRed" :class="{'bg-primary': bgRed}">
+                    </div>
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-1',
+                        data: {
+                            bgRed: false
+                        }
+                    });
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+    <!-- First Lesson -->
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            2. Dynamic Styling with CSS Classes - Using Objects
+        </h5>
+        <hr>
+        <div id="dom-2">
+            <div class="p-4 border border-secondary" @click="bgRed = !bgRed" :class="divClasses"></div>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-2">
+                    <div class="p-4 border border-secondary" @click="bgRed = !bgRed" :class="divClasses"></div>
+
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-2',
+                        data: {
+                            bgRed: false
+                        },
+                        computed: {
+                            divClasses: function () {
+                                return {
+                                    'bg-primary': this.bgRed,
+                                    'bg-info': !this.bgRed
+                                }
+                            }
+                        }
+                    });
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+    <!-- First Lesson -->
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            3. Dynamic Styling with CSS Classes - Using Names
+        </h5>
+        <hr>
+        <div id="dom-3">
+            <div class="p-4 border border-secondary" @click="bgRed = !bgRed" :class="{'bg-primary': bgRed}"></div>
+            <br>
+            <div class="p-4 border border-secondary" :class="bgInput"></div>
+            <br>
+            <div class="p-4 border border-secondary" :class="[bgInput, {'bg-primary': bgRed}]"></div>
+            <br>
+            <div class="form-group">
+                <label class="form-control-label" for="inputSuccess1">Type Bootsrap Classes</label>
+                <input v-model="bgInput" type="text" class="form-control">
+            </div>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-3">
+                    <div class="p-4 border border-secondary" @click="bgRed = !bgRed" :class="{'bg-primary': bgRed}">
+                    </div>
+                    <br>
+                    <div class="p-4 border border-secondary" :class="bgInput"></div>
+                    <br>
+                    <div class="p-4 border border-secondary" :class="[bgInput, {'bg-primary': bgRed}]"></div>
+                    <br>
+                    <div class="form-group">
+                        <label class="form-control-label" for="inputSuccess1">Type Bootsrap Classes</label>
+                        <input v-model="bgInput" type="text" class="form-control">
+                    </div>
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-3',
+                        data: {
+                            bgRed: false,
+                            bgInput: 'bg-success'
+                        }
+                    });
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+    <!-- First Lesson -->
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            4. Setting Styles Dynamically (without CSS Classes)
+        </h5>
+        <hr>
+        <div id="dom-4">
+            <div class="border p-2 border-warning">
+                <div class="p-4" :style="{backgroundColor: color1}"></div>
+                <div class="form-group mt-2">
+                    <label class="form-control-label" for="inputSuccess1">Enter Color Code or Name</label>
+                    <input v-model="color1" type="text" class="form-control">
+                </div>
+            </div>
+            <br>
+            <div class="border p-2 border-warning">
+                <div class="p-4" :style="myStyles"></div>
+                <div class="form-group mt-2">
+                    <label class="form-control-label" for="inputSuccess1">Enter Color Code or Name</label>
+                    <input v-model="color2" type="text" class="form-control">
+                </div>
+                <div class="form-group mt-2">
+                    <label class="form-control-label" for="inputSuccess1">Enter Width (px)</label>
+                    <input v-model="width" type="text" class="form-control">
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-4">
+                    <div class="border p-2 border-warning">
+                        <div class="p-4" :style="{backgroundColor: color1}"></div>
+                        <div class="form-group mt-2">
+                            <label class="form-control-label" for="inputSuccess1">Enter Color Code or Name</label>
+                            <input v-model="color1" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="border p-2 border-warning">
+                        <div class="p-4" :style="myStyles"></div>
+                        <div class="form-group mt-2">
+                            <label class="form-control-label" for="inputSuccess1">Enter Color Code or Name</label>
+                            <input v-model="color2" type="text" class="form-control">
+                        </div>
+                        <div class="form-group mt-2">
+                            <label class="form-control-label" for="inputSuccess1">Enter Width (px)</label>
+                            <input v-model="width" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-4',
+                        data: {
+                            color1: 'pink',
+                            width: 100,
+                            color2: 'lightblue'
+                        },
+                        computed: {
+                            myStyles: function () {
+                                return {
+                                    backgroundColor: this.color2,
+                                    width: `${this.width}px`
+                                }
+                            }
+                        }
+                    })
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            5. Styling Elements with the Array Syntax
+        </h5>
+        <hr>
+        <div id="dom-5">
+            <div class="p-4" :style="[myStyles, {height: width + 'px'}]"></div>
+            <div class="form-group mt-2">
+                <label class="form-control-label" for="inputSuccess1">Enter Color Code or Name</label>
+                <input v-model="color" type="text" class="form-control">
+            </div>
+            <div class="form-group mt-2">
+                <label class="form-control-label" for="inputSuccess1">Enter Width (px)</label>
+                <input v-model="width" type="text" class="form-control">
+            </div>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-5">
+                    <div class="p-4" :style="[myStyles, {height: width + 'px'}]"></div>
+                    <div class="form-group mt-2">
+                        <label class="form-control-label" for="inputSuccess1">Enter Color Code or Name</label>
+                        <input v-model="color" type="text" class="form-control">
+                    </div>
+                    <div class="form-group mt-2">
+                        <label class="form-control-label" for="inputSuccess1">Enter Width (px)</label>
+                        <input v-model="width" type="text" class="form-control">
+                    </div>
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-5',
+                        data: {
+                            color: 'khaki',
+                            width: 150,
+                        },
+                        computed: {
+                            myStyles: function () {
+                                return {
+                                    backgroundColor: this.color,
+                                    width: `${this.width}px`
+                                }
+                            }
+                        }
+                    })
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+    <script src="./scripts.js"></script>
+</body>
