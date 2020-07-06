@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using VueJS to Interact with the DOM</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.min.css">
+    <style>
+        ::-webkit-scrollbar {
+            width: 0;
+        }
+
+        * {
+            user-select: none;
+        }
+
+        button {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="text-center text-info display-4 mb-3">Using VueJS to Interact with the DOM - 2</div>
+    <!-- First Lesson -->
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            1. Listening to Events
+        </h5>
+        <hr>
+        <div id="dom-1">
+            <button v-on:click="increase" class="btn btn-sm btn-primary">Click Me</button>
+            <p class="lead mt-2">{{ counter }}</p>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-1">
+                    <button v-on:click="increase" class="btn btn-sm btn-primary">Click Me</button>
+                    <p class="lead mt-2">{{ counter }}</p>
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-1',
+                        data: {
+                            counter: 0
+                        },
+                        methods: {
+                            increase: function () {
+                                this.counter++;
+                            }
+                        }
+                    });
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+    <!-- First Lesson -->
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            2. Getting Event Data from the Event Object
+        </h5>
+        <hr>
+        <div id="dom-2">
+            <div v-on:mousemove="updateCoordinates" class="border border-info lead">
+                Cursor Coordinates ( {{ x }}, {{ y }} )
+            </div>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-2">
+                    <div v-on:mousemove="updateCoordinates" class="border border-info lead">
+                        Cursor Coordinates ( {{ x }}, {{ y }} )
+                    </div>
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-2',
+                        data: {
+                            x: 0,
+                            y: 0,
+                        },
+                        methods: {
+                            updateCoordinates(event) {
+                                this.x = event.clientX
+                                this.y = event.clientY
+                            }
+                        }
+                    });
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+    <!-- First Lesson -->
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            3. Passing your own Arguments with Events
+        </h5>
+        <hr>
+        <div id="dom-3">
+            <button v-on:click="increase(3, $event)" class="btn btn-sm btn-primary">Click Me</button>
+            <p class="lead mt-2">{{ counter }}</p>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-3">
+                    <button v-on:click="increase(3, $event)" class="btn btn-sm btn-primary">Click Me</button>
+                    <p class="lead mt-2">{{ counter }}</p>
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-3',
+                        data: {
+                            counter: 0
+                        },
+                        methods: {
+                            increase: function (step, event) {
+                                this.counter += step;
+                                console.log(event);
+                            }
+                        }
+                    });
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+    <!-- First Lesson -->
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            4. Modifying an Event - with Event Modifiers
+        </h5>
+        <hr>
+        <div id="dom-4">
+            <div v-on:mousemove="updateCoordinates" class="border border-info lead">
+                Cursor Coordinates ( {{ x }}, {{ y }} ) - <span class="bg-info" v-on:mousemove="stopUpdating">Don't
+                    Update
+                    Coordinates</span>
+            </div>
+            <div v-on:mousemove="updateCoordinates" class="mt-2 border border-info lead">
+                Cursor Coordinates ( {{ x }}, {{ y }} ) - <span class="bg-info" v-on:mousemove.stop="">Don't
+                    Update
+                    Coordinates</span>
+            </div>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-4">
+                    <div v-on:mousemove="updateCoordinates" class="border border-info lead">
+                        Cursor Coordinates ( {{ x }}, {{ y }} ) - <span class="bg-info"
+                            v-on:mousemove="stopUpdating">Don't
+                            Update
+                            Coordinates</span>
+                    </div>
+                    <div v-on:mousemove="updateCoordinates" class="mt-2 border border-info lead">
+                        Cursor Coordinates ( {{ x }}, {{ y }} ) - <span class="bg-info" v-on:mousemove.stop="">Don't
+                            Update
+                            Coordinates</span>
+                    </div>
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-4',
+                        data: {
+                            x: 0,
+                            y: 0,
+                        },
+                        methods: {
+                            updateCoordinates(event) {
+                                this.x = event.clientX
+                                this.y = event.clientY
+                            },
+                            stopUpdating(event) {
+                                event.stopPropagation();
+                            }
+                        }
+                    });
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            5. Listening to Keyboard Events
+        </h5>
+        <hr>
+        <div id="dom-5">
+            <div class="form-group">
+                <label class="form-control-label" for="inputSuccess1">Type Something here</label>
+                <input v-on:keyup="alertMe" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label class="form-control-label" for="inputSuccess1">Type Something here and then Press 'ENTER'</label>
+                <input v-on:keyup.enter="alertMe" type="text" class="form-control">
+            </div>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-5">
+                    <div class="form-group">
+                        <label class="form-control-label" for="inputSuccess1">Type Something here</label>
+                        <input v-on:keyup="alertMe" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" for="inputSuccess1">Type Something here and then Press
+                            'ENTER'</label>
+                        <input v-on:keyup.enter="alertMe" type="text" class="form-control">
+                    </div>
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-5',
+                        methods: {
+                            alertMe() {
+                                alert('Vue JS is a Frontend Framework');
+                            }
+                        }
+                    })
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+    <script src="./scripts.js"></script>
+</body>
