@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <div class="text-center text-info display-4 mb-3">Using VueJS to Interact with the DOM</div>
+    <div class="text-center text-info display-4 mb-3">Using VueJS to Interact with the DOM - 1</div>
     <!-- First Lesson -->
     <div class="container py-2 border border-primary my-2">
         <h5 class="text-success text-center">1. Understanding VueJS Templates</h5>
@@ -46,14 +46,6 @@
                 </script>
             </xmp>
         </div>
-        <script>
-            new Vue({
-                el: '#dom-1',
-                data: {
-                    title: 'Hello Vue JS'
-                }
-            })
-        </script>
     </div>
 
 
@@ -76,6 +68,37 @@
                 <script>
                     new Vue({
                         el: '#dom-2',
+                        methods: {
+                            sayHello() {
+                                return 'Hello Vue JS'
+                            }
+                        }
+                    })
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+
+    <!-- Third Lesson -->
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">3. Accessing Data in the Vue Instance</h5>
+        <hr>
+        <div id="dom-3">
+            <p class="lead">{{ sayHello() }}</p>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-3">
+                    <p>{{ sayHello() }}</p>
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-3',
                         data: {
                             title: 'Hello Vue JS'
                         },
@@ -88,20 +111,109 @@
                 </script>
             </xmp>
         </div>
-        <script>
-            new Vue({
-                el: '#dom-2',
-                data: {
-                    title: 'Hello Vue JS'
-                },
-                methods: {
-                    sayHello() {
-                        return this.title
-                    }
-                }
-            })
-        </script>
     </div>
+
+    <!-- Fourth Lesson -->
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">4. Binding to Attributes</h5>
+        <hr>
+        <div id="dom-4">
+            <p class="lead">{{ sayHello() }} - <a v-bind:href="link" target="_blank">Google</a></p>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-4">
+                    <p class="lead">{{ sayHello() }} - <a v-bind:href="link" target="_blank">Google</a></p>
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-4',
+                        data: {
+                            title: 'Hello Vue JS',
+                            link: 'https://google.com'
+                        },
+                        methods: {
+                            sayHello() {
+                                return this.title
+                            }
+                        }
+                    })
+                </script>
+            </xmp>
+        </div>
+
+    </div>
+
+    <!-- 5 Lesson -->
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">5. Disable Re-Rendering with v-once</h5>
+        <hr>
+        <div id="dom-5">
+            <p v-once class="lead">{{ title }}</p>
+            <p class="lead">{{ title }}</p>
+            <p class="lead">{{ sayHello() }}</p>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-5">
+                    <p v-once class="lead">{{ title }}</p>
+                    <p class="lead">{{ title }}</p>
+                    <p class="lead">{{ sayHello() }}</p>
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-5',
+                        data: {
+                            title: 'Hello Vue JS',
+                        },
+                        methods: {
+                            sayHello() {
+                                this.title = 'Welcome Vue JS'
+                                return this.title
+                            }
+                        }
+                    })
+                </script>
+            </xmp>
+        </div>
+
+    </div>
+    <!-- 5 Lesson -->
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">6. How to Output Raw HTML</h5>
+        <hr>
+        <div id="dom-6">
+            <p v-html="fullLink" class="lead"></p>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-6">
+                    <p v-html="fullLink" class="lead"></p>
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-6',
+                        data: {
+                            fullLink: '<a target="_blank" href="https://google.com">Google</a>',
+                        }
+                    });
+                </script>
+            </xmp>
+        </div>
+    </div>
+    <script src="./scripts.js"></script>
 </body>
 
 </html>
