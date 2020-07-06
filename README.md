@@ -22,8 +22,6 @@ $ npm run serve
 
 ---
 
----
-
 ### Learning Vue JS
 
 - Using VueJS to Interact with the DOM
