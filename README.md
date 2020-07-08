@@ -29,6 +29,8 @@ $ npm run serve
    - Part - 2 [Live here](https://nil1729.github.io/Vue-Noob/vue-noob-DOM-2/)
    - Part - 3 [Live here](https://nil1729.github.io/Vue-Noob/vue-noob-DOM-3/)
    - Part - 4 [Live here](https://nil1729.github.io/Vue-Noob/vue-noob-DOM-4/)
+2. Using Conditionals and Rendering Lists
+   - Part - 1 [Live here](https://nil1729.github.io/Vue-Noob/vue-noob-COND-1/)
 
 ---
 
