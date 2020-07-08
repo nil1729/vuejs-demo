@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using Conditionals and Rendering Lists</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.min.css">
+    <style>
+        ::-webkit-scrollbar {
+            width: 0;
+        }
+
+        * {
+            user-select: none;
+        }
+
+        button {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="text-center text-info display-4 mb-3">
+        Using Conditionals and Rendering Lists - 1</div>
+    <!-- First Lesson -->
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            1. Conditional Rendering with v-if
+        </h5>
+        <hr>
+        <div id="dom-1">
+            <div class="border border-success py-3 px-2">
+                <p class="lead" v-if="show1">
+                    I love Vue JS very much.
+                </p>
+                <button class="btn btn-sm btn-info" @click="show1 = !show1">Toggle Text</button>
+            </div>
+            <div class="border border-success py-3 px-2">
+                <p class="lead" v-if="show2">
+                    I love Vue JS very much.
+                </p>
+                <p v-else class="lead">
+                    I love React JS very much.
+                </p>
+                <button class="btn btn-sm btn-info" @click="show2 = !show2">Toggle Text</button>
+            </div>
+            <div class="border border-success py-3 px-2">
+                <p class="lead" v-if="show3 === 'vue'">
+                    I love Vue JS very much.
+                </p>
+                <p v-else-if="show3 ===  'react'" class="lead">
+                    I love React JS very much.
+                </p>
+                <p v-else class="lead">
+                    I don't Like any Framework
+                </p>
+                <button class="btn btn-sm btn-info" @click="show3 = 'vue'">Like Vue</button>
+                <button class="btn btn-sm btn-info" @click="show3 = 'react'">Like React</button>
+                <button class="btn btn-sm btn-info" @click="show3 = ''">Nothing</button>
+            </div>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-1">
+                    <div class="border border-success py-3 px-2">
+                        <p class="lead" v-if="show1">
+                            I love Vue JS very much.
+                        </p>
+                        <button class="btn btn-sm btn-info" @click="show1 = !show1">Toggle Text</button>
+                    </div>
+                    <div class="border border-success py-3 px-2">
+                        <p class="lead" v-if="show2">
+                            I love Vue JS very much.
+                        </p>
+                        <p v-else class="lead">
+                            I love React JS very much.
+                        </p>
+                        <button class="btn btn-sm btn-info" @click="show2 = !show2">Toggle Text</button>
+                    </div>
+                    <div class="border border-success py-3 px-2">
+                        <p class="lead" v-if="show3 === 'vue'">
+                            I love Vue JS very much.
+                        </p>
+                        <p v-else-if="show3 ===  'react'" class="lead">
+                            I love React JS very much.
+                        </p>
+                        <p v-else class="lead">
+                            I don't Like any Framework
+                        </p>
+                        <button class="btn btn-sm btn-info" @click="show3 = 'vue'">Like Vue</button>
+                        <button class="btn btn-sm btn-info" @click="show3 = 'react'">Like React</button>
+                        <button class="btn btn-sm btn-info" @click="show3 = ''">Nothing</button>
+                    </div>
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-1',
+                        data: {
+                            show1: true,
+                            show2: true,
+                            show3: 'vue'
+                        }
+                    });
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+    <!-- First Lesson -->
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            2. Using an Alternative v-if Syntax
+        </h5>
+        <hr>
+        <div id="dom-2">
+            <template v-if="show">
+                <p class="lead">HTML5 has Template Element</p>
+                <p class="lead">I love Vue JS</p>
+            </template>
+            <button class="btn btn-sm btn-info" @click="show = !show">Toggle Text</button>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-2">
+                    <template v-if="show">
+                        <p class="lead">HTML5 has Template Element</p>
+                        <p class="lead">I love Vue JS</p>
+                    </template>
+                    <button class="btn btn-sm btn-info" @click="show = !show">Toggle Text</button>
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-2',
+                        data: {
+                            show: true,
+                        }
+                    });
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+    <!-- First Lesson -->
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            3. Don't Detach it with v-show
+        </h5>
+        <hr>
+        <div id="dom-3">
+            <p class="lead" v-show="show">I love Vue JS</p>
+            <button class="btn btn-sm btn-info" @click="show = !show">Toggle Text</button>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-3">
+                    <p class="lead" v-show="show">I love Vue JS</p>
+                    <button class="btn btn-sm btn-info" @click="show = !show">Toggle Text</button>
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-3',
+                        data: {
+                            show: true,
+                        }
+                    });
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+    <!-- First Lesson -->
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            4. Rendering Lists with v-for
+        </h5>
+        <hr>
+        <div id="dom-4">
+            <p class="lead">
+                Some Popular Frameworks
+            </p>
+            <ul class="list-group">
+                <li class="list-group-item" v-for="framework in frameworks">{{ framework }}</li>
+            </ul>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-4">
+                    <p class="lead">
+                        Some Popular Frameworks
+                    </p>
+                    <ul class="list-group">
+                        <li class="list-group-item" v-for="framework in frameworks">{{ framework }}</li>
+                    </ul>
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-4',
+                        data: {
+                            frameworks: ['React JS', 'Vue JS', 'Angular JS']
+                        }
+                    });
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            5. Getting the Current Index
+        </h5>
+        <hr>
+        <div id="dom-5">
+            <p class="lead">
+                Some Popular Frameworks
+            </p>
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center"
+                    v-for="(framework, index) in frameworks">{{ framework }}
+                    <span class="badge badge-primary badge-pill">{{ index }}</span>
+                </li>
+            </ul>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-5">
+                    <p class="lead">
+                        Some Popular Frameworks
+                    </p>
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center"
+                            v-for="(framework, index) in frameworks">{{ framework }}
+                            <span class="badge badge-primary badge-pill">{{ index }}</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-5',
+                        data: {
+                            frameworks: ['React JS', 'Vue JS', 'Angular JS']
+                        }
+                    });
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            6. Looping through Objects
+        </h5>
+        <hr>
+        <div id="dom-6">
+            <p class="lead">
+                Some Popular Frameworks
+            </p>
+            <ul class="list-group">
+                <li class="list-group-item" v-for="framework in frameworks">
+                    <p v-for="(value, key) in framework" class="lead"><span
+                            class="badge badge-primary badge-pill text-capitalize">{{key}}</span> {{ value }}</p>
+                </li>
+            </ul>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-6">
+                    <p class="lead">
+                        Some Popular Frameworks
+                    </p>
+                    <ul class="list-group">
+                        <li class="list-group-item" v-for="framework in frameworks">
+                            <p v-for="(value, key) in framework" class="lead"><span
+                                    class="badge badge-primary badge-pill text-capitalize">{{key}}</span> {{ value }}
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-6',
+                        data: {
+                            frameworks: [{
+                                    name: 'React JS',
+                                    founder: 'Jordan Walke'
+                                },
+                                {
+                                    name: 'Vue JS',
+                                    founder: 'Evan You',
+                                },
+                                {
+                                    name: 'Angular JS',
+                                    founder: 'Misko Hevery'
+                                }
+                            ]
+                        }
+                    });
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            7. Keeping Track of Elements when using v-for
+        </h5>
+        <hr>
+        <div id="dom-7">
+            <p class="lead">
+                Some Popular Frameworks
+            </p>
+            <ul class="list-group">
+                <li class="list-group-item" :key="framework" v-for="framework in frameworks">{{ framework }}</li>
+            </ul>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-7">
+                    <p class="lead">
+                        Some Popular Frameworks
+                    </p>
+                    <ul class="list-group">
+                        <li class="list-group-item" :key="framework" v-for="framework in frameworks">{{ framework }}
+                        </li>
+                    </ul>
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-7',
+                        data: {
+                            frameworks: ['React JS', 'Vue JS', 'Angular JS']
+                        }
+                    });
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+    <script src="./scripts.js"></script>
+</body>
