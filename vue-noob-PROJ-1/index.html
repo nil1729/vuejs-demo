@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Monster Slayer</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .progress {
+            height: 2rem;
+        }
+
+        body::-webkit-scrollbar {
+            width: 0;
+        }
+
+        * {
+            user-select: none;
+        }
+
+        .list-group::-webkit-scrollbar {
+            width: 7px;
+        }
+
+        .list-group::-webkit-scrollbar-thumb {
+            background-color: aqua;
+        }
+
+        button {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        button.control.btn {
+            letter-spacing: 1px;
+            font-size: 1.1rem;
+        }
+
+        .indicator {
+            top: 16px;
+            background: transparent;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ffffff;
+            z-index: 99;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="conatiner" id="app">
+        <div class="jumbotron py-3">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 class="text-center">You</h1>
+                    <div class="progress bg-secondary position-relative">
+                        <p class="lead mb-0 indicator">
+                            {{ yourHealth>0?yourHealth:0 }}</p>
+                        <div class="progress-bar bg-success" role="progressbar"
+                            :style="{width: `${yourHealth>0?yourHealth:0}%`}">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h1 class="text-center">Monster</h1>
+                    <div class="progress bg-secondary position-relative">
+                        <p class="lead mb-0 indicator">{{  monsterHealth>0?monsterHealth:0 }}</p>
+                        <div class="progress-bar bg-success" role="progressbar"
+                            :style="{width:`${monsterHealth>0?monsterHealth:0}%`}">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container text-center border border-secondary p-4">
+            <button @click="startGameShow = false" v-if="startGameShow" class="btn btn-lg btn-secondary text-dark">
+                Start New Game
+            </button>
+            <template v-else>
+                <button @click="attack" class="control btn btn-warning text-dark">
+                    Attack
+                </button>
+                <button @click="spclAttack" class="control btn btn-danger text-light">
+                    Special Attack
+                </button>
+                <button @click="heal" class="control btn btn-success text-light">
+                    Heal
+                </button>
+                <button @click="resetGame" class="control btn btn-info text-light">
+                    Give Up
+                </button>
+            </template>
+        </div>
+        <div v-if="show" class="container mt-3 p-4 border border-success">
+            <div class="list-group" style="max-height: 20rem; overflow-y: scroll">
+                <div v-for="log in logs" class="list-group-item text-dark p-0 my-1"
+                    :style="{backgroundColor: log.color}">
+                    <p class="lead text-center mb-0">
+                        {{ log.msg }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
