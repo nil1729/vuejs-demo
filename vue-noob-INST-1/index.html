@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding the VueJS Instance</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.min.css">
+    <style>
+        ::-webkit-scrollbar {
+            width: 0;
+        }
+
+        * {
+            user-select: none;
+        }
+
+        button {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="text-center text-info display-4 mb-3">
+        Understanding the VueJS Instance - 1</div>
+    <!-- First Lesson -->
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            1. Some Basics about the VueJS Instance
+        </h5>
+        <hr>
+        <div id="dom-1">
+            <p class="lead">
+                {{ title }}
+            </p>
+            <p class="lead">{{ lowerCaseTitle }}</p>
+            <p v-if="showText" class="lead">
+                You can see me !!
+            </p>
+            <button @click="changeText" class="btn btn-sm btn-success">
+                Change Text
+            </button>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-1">
+
+                </div>
+
+                <script>
+
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+    <!-- First Lesson -->
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            2. Using Multiple Vue Instances
+        </h5>
+        <hr>
+        <div id="dom-2">
+            <div id="app-21">
+                <div class="lead">{{ title }}</div>
+            </div>
+            <div id="app-22">
+                <div class="lead">{{ title }}</div>
+            </div>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-2">
+                </div>
+
+                <script>
+
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+    <!-- First Lesson -->
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            3. Accessing the Vue Instance from Outside
+        </h5>
+        <hr>
+        <div id="dom-3">
+            <div class="border border-success container p-4">
+                <div id="app-31">
+                    <p class="lead">{{ title }}</p>
+                </div>
+                <div id="app-32">
+                    <button @click="changeText" class="btn btn-sm btn-info">Change Text from app 2</button>
+                </div>
+            </div>
+            <div class="border border-success container p-4">
+                <div id="app-33">
+                    <p class="lead">{{ title }}</p>
+                </div>
+                <button id="outside-btn" class="btn btn-sm btn-info">
+                    Change text from outside
+                </button>
+            </div>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-3">
+                </div>
+
+                <script>
+
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+    <!-- First Lesson -->
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            4. A Closer Look at $el and $data
+        </h5>
+        <hr>
+        <div id="dom-4">
+            <div id="app-41">
+                <p lead=""> {{ title }} </p>
+            </div>
+            <button id="btn-4" class="btn btn-sm btn-success">
+                Change Text
+            </button>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-4">
+
+                </div>
+
+                <script>
+
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            5. Placing $refs and Using them on your Templates
+        </h5>
+        <hr>
+        <div id="dom-5">
+            <p class="lead">{{ title }}</p>
+            <p ref="myParagraph" class="lead">Some Pargraph Texts</p>
+            <button @click="output" ref="myButton" class="btn btn-sm btn-primary">Some Text</button>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-5">
+
+                </div>
+
+                <script>
+
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            6. Looping through Objects
+        </h5>
+        <hr>
+        <div id="dom-6">
+            <p class="lead">
+                Some Popular Frameworks
+            </p>
+            <ul class="list-group">
+                <li class="list-group-item" v-for="framework in frameworks">
+                    <p v-for="(value, key) in framework" class="lead"><span
+                            class="badge badge-primary badge-pill text-capitalize">{{key}}</span> {{ value }}</p>
+                </li>
+            </ul>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-6">
+                    <p class="lead">
+                        Some Popular Frameworks
+                    </p>
+                    <ul class="list-group">
+                        <li class="list-group-item" v-for="framework in frameworks">
+                            <p v-for="(value, key) in framework" class="lead"><span
+                                    class="badge badge-primary badge-pill text-capitalize">{{key}}</span> {{ value }}
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-6',
+                        data: {
+                            frameworks: [{
+                                    name: 'React JS',
+                                    founder: 'Jordan Walke'
+                                },
+                                {
+                                    name: 'Vue JS',
+                                    founder: 'Evan You',
+                                },
+                                {
+                                    name: 'Angular JS',
+                                    founder: 'Misko Hevery'
+                                }
+                            ]
+                        }
+                    });
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            7. Keeping Track of Elements when using v-for
+        </h5>
+        <hr>
+        <div id="dom-7">
+            <p class="lead">
+                Some Popular Frameworks
+            </p>
+            <ul class="list-group">
+                <li class="list-group-item" :key="framework" v-for="framework in frameworks">{{ framework }}</li>
+            </ul>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-7">
+                    <p class="lead">
+                        Some Popular Frameworks
+                    </p>
+                    <ul class="list-group">
+                        <li class="list-group-item" :key="framework" v-for="framework in frameworks">{{ framework }}
+                        </li>
+                    </ul>
+                </div>
+
+                <script>
+                    new Vue({
+                        el: '#dom-7',
+                        data: {
+                            frameworks: ['React JS', 'Vue JS', 'Angular JS']
+                        }
+                    });
+                </script>
+            </xmp>
+        </div>
+    </div>
+
+    <script src="./scripts.js"></script>
+</body>
