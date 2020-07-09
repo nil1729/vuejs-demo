@@ -101,8 +101,75 @@ const vm5 = new Vue({
             keys.forEach(key => {
                 console.log(this.$refs[key].innerText);
             });
+
+            this.$refs.myButton.innerText = 'Text Changed'
         }
     }
 });
 
-// console.log(vm5.$refs);
+// =================
+
+const vm61 = new Vue({
+    data: {
+        title: 'I Love Vue JS'
+    }
+});
+
+vm61.$mount('#app-61');
+
+
+const vm62 = new Vue({
+    template: '<p class="lead">I am a Template</p>'
+});
+vm62.$mount();
+document.getElementById('app-62').appendChild(vm62.$el);
+
+// ========
+
+Vue.component('mycomponent', {
+    template: '<p class="lead">I am a reusable component</p>'
+});
+
+new Vue({
+    el: '#dom-7'
+});
+
+// ====
+new Vue({
+    el: '#dom-10',
+    data: {
+        title: 'This is Vue JS Lifecycle'
+    },
+    beforeCreate: function () {
+        console.log('beforeCreate()');
+    },
+    created: function () {
+        console.log('created()');
+    },
+    beforeMount: function () {
+        console.log('beforeMount()');
+    },
+    mounted: function () {
+        console.log('mounted()');
+    },
+    beforeUpdate: function () {
+        console.log('beforeUpdate()');
+    },
+    updated: function () {
+        console.log('updated()');
+    },
+    beforeDestroy: function () {
+        console.log('beforeDestroy()');
+    },
+    destroyed: function () {
+        console.log('destroyed()');
+    },
+    methods: {
+        updateText: function () {
+            this.title = 'I love Vue JS'
+        },
+        destroyInstance: function () {
+            this.$destroy();
+        }
+    }
+})

@@ -50,11 +50,45 @@
                 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
                 <div id="dom-1">
-
+                    <p class="lead">
+                        {{ title }}
+                    </p>
+                    <p class="lead">{{ lowerCaseTitle }}</p>
+                    <p v-if="showText" class="lead">
+                        You can see me !!
+                    </p>
+                    <button @click="changeText" class="btn btn-sm btn-success">
+                        Change Text
+                    </button>
                 </div>
 
                 <script>
-
+                    new Vue({
+                        el: '#dom-1',
+                        data: {
+                            title: 'I love Vue JS',
+                            showText: false
+                        },
+                        methods: {
+                            changeText: function () {
+                                this.showText = true;
+                                this.updateText()
+                            },
+                            updateText: function () {
+                                this.title = 'I love Vue JS very much.'
+                            },
+                        },
+                        computed: {
+                            lowerCaseTitle: function () {
+                                return this.title.toLowerCase();
+                            }
+                        },
+                        watch: {
+                            title: function (value) {
+                                alert(`Title is updated to ${value}`);
+                            }
+                        }
+                    });
                 </script>
             </xmp>
         </div>
@@ -80,10 +114,28 @@
                 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
                 <div id="dom-2">
+                    <div id="app-21">
+                        <div class="lead">{{ title }}</div>
+                    </div>
+                    <div id="app-22">
+                        <div class="lead">{{ title }}</div>
+                    </div>
                 </div>
 
                 <script>
+                    new Vue({
+                        el: '#app-21',
+                        data: {
+                            title: 'Multiple Vue Intances 1'
+                        }
+                    });
 
+                    new Vue({
+                        el: '#app-22',
+                        data: {
+                            title: 'Multiple Vue Intances 2'
+                        }
+                    });
                 </script>
             </xmp>
         </div>
@@ -119,10 +171,52 @@
                 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
                 <div id="dom-3">
+                    <div class="border border-success container p-4">
+                        <div id="app-31">
+                            <p class="lead">{{ title }}</p>
+                        </div>
+                        <div id="app-32">
+                            <button @click="changeText" class="btn btn-sm btn-info">Change Text from app 2</button>
+                        </div>
+                    </div>
+                    <div class="border border-success container p-4">
+                        <div id="app-33">
+                            <p class="lead">{{ title }}</p>
+                        </div>
+                        <button id="outside-btn" class="btn btn-sm btn-info">
+                            Change text from outside
+                        </button>
+                    </div>
                 </div>
 
                 <script>
+                    const vm31 = new Vue({
+                        el: '#app-31',
+                        data: {
+                            title: 'This the own title of App 1'
+                        }
+                    });
 
+                    const vm32 = new Vue({
+                        el: '#app-32',
+                        methods: {
+                            changeText() {
+                                vm31.title = 'This is the changed text by App 2'
+                            }
+                        }
+                    });
+
+
+                    const vm33 = new Vue({
+                        el: '#app-33',
+                        data: {
+                            title: 'This the own title of App 3'
+                        }
+                    });
+
+                    document.querySelector('#outside-btn').addEventListener('click', () => {
+                        vm33.title = 'This is the changed text by JS'
+                    });
                 </script>
             </xmp>
         </div>
@@ -148,11 +242,26 @@
                 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
                 <div id="dom-4">
-
+                    <div id="app-41">
+                        <p lead=""> {{ title }} </p>
+                    </div>
+                    <button id="btn-4" class="btn btn-sm btn-success">
+                        Change Text
+                    </button>
                 </div>
 
                 <script>
+                    const vm4 = new Vue({
+                        el: '#app-41',
+                        data: {
+                            title: 'I love Vue JS'
+                        }
+                    });
 
+                    document.getElementById('btn-4').addEventListener('click', () => {
+                        vm4.$data.title = 'I Love React JS'
+                        console.log(vm4.$el);
+                    });
                 </script>
             </xmp>
         </div>
@@ -174,11 +283,35 @@
                 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
                 <div id="dom-5">
+                    <p class="lead">{{ title }}</p>
+                    <p ref="myParagraph" class="lead">Some Pargraph Texts</p>
+                    <button @click="output" ref="myButton" class="btn btn-sm btn-primary">Some Text</button>
 
                 </div>
 
                 <script>
+                    const vm5 = new Vue({
+                        el: '#dom-5',
+                        data: {
+                            title: 'I love Vue JS'
+                        },
+                        methods: {
+                            output: function () {
+                                console.log(this.$refs);
+                                console.log(typeof this.$refs);
 
+                                console.log(Object.keys(this.$refs));
+                                console.log(Object.values(this.$refs));
+
+                                const keys = Object.keys(this.$refs);
+                                keys.forEach(key => {
+                                    console.log(this.$refs[key].innerText);
+                                });
+
+                                this.$refs.myButton.innerText = 'Text Changed'
+                            }
+                        }
+                    });
                 </script>
             </xmp>
         </div>
@@ -186,19 +319,16 @@
 
     <div class="container py-2 border border-primary my-2">
         <h5 class="text-success text-center">
-            6. Looping through Objects
+            6. Mounting a Template
         </h5>
         <hr>
         <div id="dom-6">
-            <p class="lead">
-                Some Popular Frameworks
-            </p>
-            <ul class="list-group">
-                <li class="list-group-item" v-for="framework in frameworks">
-                    <p v-for="(value, key) in framework" class="lead"><span
-                            class="badge badge-primary badge-pill text-capitalize">{{key}}</span> {{ value }}</p>
-                </li>
-            </ul>
+            <div id="app-61">
+                <div class="lead">{{ title }}</div>
+            </div>
+            <div id="app-62">
+
+            </div>
         </div>
         <hr>
         <div class="jumbotron m-0 p-0">
@@ -206,37 +336,29 @@
                 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
                 <div id="dom-6">
-                    <p class="lead">
-                        Some Popular Frameworks
-                    </p>
-                    <ul class="list-group">
-                        <li class="list-group-item" v-for="framework in frameworks">
-                            <p v-for="(value, key) in framework" class="lead"><span
-                                    class="badge badge-primary badge-pill text-capitalize">{{key}}</span> {{ value }}
-                            </p>
-                        </li>
-                    </ul>
+                    <div id="app-61">
+                        <div class="lead">{{ title }}</div>
+                    </div>
+                    <div id="app-62">
+
+                    </div>
                 </div>
 
                 <script>
-                    new Vue({
-                        el: '#dom-6',
+                    const vm61 = new Vue({
                         data: {
-                            frameworks: [{
-                                    name: 'React JS',
-                                    founder: 'Jordan Walke'
-                                },
-                                {
-                                    name: 'Vue JS',
-                                    founder: 'Evan You',
-                                },
-                                {
-                                    name: 'Angular JS',
-                                    founder: 'Misko Hevery'
-                                }
-                            ]
+                            title: 'I Love Vue JS'
                         }
                     });
+
+                    vm61.$mount('#app-61');
+
+
+                    const vm62 = new Vue({
+                        template: '<p class="lead">I am a Template</p>'
+                    });
+                    vm62.$mount();
+                    document.getElementById('app-62').appendChild(vm62.$el);
                 </script>
             </xmp>
         </div>
@@ -244,16 +366,12 @@
 
     <div class="container py-2 border border-primary my-2">
         <h5 class="text-success text-center">
-            7. Keeping Track of Elements when using v-for
+            7. Using Components
         </h5>
         <hr>
         <div id="dom-7">
-            <p class="lead">
-                Some Popular Frameworks
-            </p>
-            <ul class="list-group">
-                <li class="list-group-item" :key="framework" v-for="framework in frameworks">{{ framework }}</li>
-            </ul>
+            <mycomponent></mycomponent>
+            <mycomponent></mycomponent>
         </div>
         <hr>
         <div class="jumbotron m-0 p-0">
@@ -261,22 +379,103 @@
                 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
                 <div id="dom-7">
-                    <p class="lead">
-                        Some Popular Frameworks
-                    </p>
-                    <ul class="list-group">
-                        <li class="list-group-item" :key="framework" v-for="framework in frameworks">{{ framework }}
-                        </li>
-                    </ul>
+                    <mycomponent></mycomponent>
+                    <mycomponent></mycomponent>
+                </div>
+
+                <script>
+                    Vue.component('mycomponent', {
+                        template: '<p class="lead">I am a reusable component</p>'
+                    });
+
+                    new Vue({
+                        el: '#dom-7'
+                    });
+                </script>
+            </xmp>
+        </div>
+    </div>
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            8. How VueJS Updates the DOM
+        </h5>
+        <hr>
+        <div class="container text-center">
+            <img src="./dom.PNG" alt="" class="img-fluid mx-auto">
+        </div>
+        <hr>
+    </div>
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            9. The VueJS Instance Lifecycle
+        </h5>
+        <hr>
+        <div class="container text-center">
+            <img src="./lifecycle.PNG" alt="" class="img-fluid mx-auto">
+        </div>
+        <hr>
+    </div>
+    <div class="container py-2 border border-primary my-2">
+        <h5 class="text-success text-center">
+            9. The VueJS Instance Lifecycle in Practice
+        </h5>
+        <hr>
+        <div id="dom-10">
+            <p class="lead">{{ title }}</p>
+            <button @click="updateText" class="btn btn-sm btn-success">Update Text</button>
+            <button @click="destroyInstance" class="btn btn-sm btn-primary">Destroy</button>
+        </div>
+        <hr>
+        <div class="jumbotron m-0 p-0">
+            <xmp>
+                <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+                <div id="dom-10">
+                    <p class="lead">{{ title }}</p>
+                    <button @click="updateText" class="btn btn-sm btn-success">Update Text</button>
+                    <button @click="destroyInstance" class="btn btn-sm btn-primary">Destroy</button>
+
                 </div>
 
                 <script>
                     new Vue({
-                        el: '#dom-7',
+                        el: '#dom-10',
                         data: {
-                            frameworks: ['React JS', 'Vue JS', 'Angular JS']
+                            title: 'This is Vue JS Lifecycle'
+                        },
+                        beforeCreate: function () {
+                            console.log('beforeCreate()');
+                        },
+                        created: function () {
+                            console.log('created()');
+                        },
+                        beforeMount: function () {
+                            console.log('beforeMount()');
+                        },
+                        mounted: function () {
+                            console.log('mounted()');
+                        },
+                        beforeUpdate: function () {
+                            console.log('beforeUpdate()');
+                        },
+                        updated: function () {
+                            console.log('updated()');
+                        },
+                        beforeDestroy: function () {
+                            console.log('beforeDestroy()');
+                        },
+                        destroyed: function () {
+                            console.log('destroyed()');
+                        },
+                        methods: {
+                            updateText: function () {
+                                this.title = 'I love Vue JS'
+                            },
+                            destroyInstance: function () {
+                                this.$destroy();
+                            }
                         }
-                    });
+                    })
                 </script>
             </xmp>
         </div>
