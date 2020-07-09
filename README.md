@@ -36,7 +36,7 @@ $ npm run serve
 4. Understanding the VueJS Instance
    - Part - 1 [Live here](https://nil1729.github.io/Vue-Noob/vue-noob-INST-1/)
 5. Understading Vue CLI and Workflow
-   - Part - 1 [Live here](https://nil1729.github.io/Vue-Noob/Vue-noob-cli-1)
+   - Part - 1 [Live here](https://nil1729.github.io/Vue-Noob/Vue-noob-CLI-1)
 
 ---
 
