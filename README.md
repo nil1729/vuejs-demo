@@ -33,6 +33,8 @@ $ npm run serve
    - Part - 1 [Live here](https://nil1729.github.io/Vue-Noob/vue-noob-COND-1/)
 3. The Monster Slayer ( First Project based on Module 1 & Module 2 )
    - This site is live [here](https://nil1729.github.io/Vue-Noob/vue-noob-PROJ-1)
+4. Understanding the VueJS Instance
+   - Part - 1 [Live here](https://nil1729.github.io/Vue-Noob/vue-noob-INST-1/)
 
 ---
 
