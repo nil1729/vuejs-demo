@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>An Introduction to Components</title>
+		<link
+			rel="stylesheet"
+			href="https://bootswatch.com/4/united/bootstrap.min.css"
+		/>
+		<style>
+			::-webkit-scrollbar {
+				width: 0;
+			}
+
+			* {
+				user-select: none;
+			}
+
+			button {
+				outline: none !important;
+				box-shadow: none !important;
+			}
+			.jumbotron {
+				overflow-y: scroll;
+			}
+		</style>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+
+	<body>
+		<div class="text-center text-info display-4 mb-3">
+			An Introduction to Components - 1
+		</div>
+		<!-- First Lesson -->
+		<div class="container py-2 border border-primary my-2">
+			<h5 class="text-success text-center">
+				1. An Introduction to Components
+			</h5>
+			<hr />
+			<div id="dom-1">
+				<my-comp></my-comp>
+				<my-comp></my-comp>
+			</div>
+			<hr />
+			<div class="jumbotron m-0 p-0">
+				<xmp>
+				<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+				<div id="dom-1">
+					<my-comp></my-comp>
+					<my-comp></my-comp>
+				</div>
+
+				<script>
+					Vue.component('my-comp', {
+						data: function () {
+							return {
+								title: 'I love Vue JS'
+							}
+						},
+						template: '<p class="lead">{{ title }}</p>'
+					});
+
+					new Vue({
+						el: '#dom-1'
+					});
+				</script>
+			</xmp>
+			</div>
+		</div>
+
+		<!-- First Lesson -->
+		<div class="container py-2 border border-primary my-2">
+			<h5 class="text-success text-center">
+				2. Storing Data in Components with the Data Method
+			</h5>
+			<hr />
+			<div id="dom-2">
+				<div class="container p-4 border border-success">
+					<my-comp-1></my-comp-1>
+					<br />
+					<my-comp-1></my-comp-1>
+				</div>
+				<div class="container p-4 border border-success">
+					<my-comp-2></my-comp-2>
+					<br />
+					<my-comp-2></my-comp-2>
+				</div>
+			</div>
+			<hr />
+			<div class="jumbotron m-0 p-0">
+				<xmp>
+				<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+				<div id="dom-2">
+					<div class="container p-4 border border-success">
+						<my-comp-1></my-comp-1>
+						<br />
+						<my-comp-1></my-comp-1>
+					</div>
+					<div class="container p-4 border border-success">
+						<my-comp-2></my-comp-2>
+						<br />
+						<my-comp-2></my-comp-2>
+					</div>
+				</div>
+
+				<script>
+					const data = {
+						title: 'I love Vue JS'
+					}
+					Vue.component('my-comp-1', {
+						data: function () {
+							return data;
+						},
+						template: '<div><p class="lead">{{ title }}</p><button @click="changeText" class="btn btn-primary btn-sm">Change Text</button></div>',
+						methods: {
+							changeText: function () {
+								this.title = 'I love React JS'
+							}
+						}
+					});
+
+					Vue.component('my-comp-2', {
+						data: function () {
+							return {
+								title: 'I love Vue JS'
+							}
+						},
+						template: '<div><p class="lead">{{ title }}</p><button @click="changeText" class="btn btn-primary btn-sm">Change Text</button></div>',
+						methods: {
+							changeText: function () {
+								this.title = 'I love React JS'
+							}
+						}
+					});
+
+					new Vue({
+						el: '#dom-2'
+					})
+				</script>
+			</xmp>
+			</div>
+		</div>
+
+		<!-- First Lesson -->
+		<div class="container py-2 border border-primary my-2">
+			<h5 class="text-success text-center">
+				3. Registering Components Locally and Globally
+			</h5>
+			<hr />
+			<div id="dom-3">
+				<div class="container px-4 pt-2 border border-success" id="app-31">
+					<app1-comp></app1-comp>
+					<g-comp></g-comp>
+				</div>
+				<div class="mt-2 container px-4 pt-2 border border-success" id="app-32">
+					<!-- <app1-comp></app1-comp>  // For avoiding console Error message -->
+					<g-comp></g-comp>
+				</div>
+			</div>
+			<hr />
+			<div class="jumbotron m-0 p-0">
+				<xmp>
+				<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+				<div id="dom-3">
+					<div class="container px-4 pt-2 border border-success" id="app-31">
+						<app1-comp></app1-comp>
+						<g-comp></g-comp>
+					</div>
+					<div class="mt-2 container px-4 pt-2 border border-success" id="app-32">
+						<!-- <app1-comp></app1-comp>  // For avoiding console Error message -->
+						<g-comp></g-comp>
+					</div>
+				</div>
+
+				<script>
+					const cmp = {
+						data: function () {
+							return {
+								title: 'I love Vue JS'
+							}
+						},
+						template: '<p class="lead">{{ title }}</p>'
+					};
+
+					Vue.component('g-comp', {
+						data: function () {
+							return {
+								title: 'I love Javascript'
+							}
+						},
+						template: '<p class="lead">{{ title }}</p>'
+					});
+
+					new Vue({
+						el: '#app-31',
+						components: {
+							'app1-comp': cmp
+						}
+					});
+					new Vue({
+						el: '#app-32',
+					})
+				</script>
+			</xmp>
+			</div>
+		</div>
+		<script src="./scripts.js"></script>
+	</body>
+</html>
