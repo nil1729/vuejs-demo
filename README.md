@@ -38,7 +38,9 @@ $ npm run serve
 5. Understading Vue CLI and Workflow
    - Part - 1 [Live here](https://nil1729.github.io/Vue-Noob/vue-noob-CLI-1)
 6. An Introduction to Components
-   - Part - 2 [Live here](https://nil1729.github.io/Vue-Noob/vue-noob-COMP-1).
+   - Part - 1 [Live here](https://nil1729.github.io/Vue-Noob/vue-noob-COMP-1).
+7. Understanding Communication betwwen Components
+   - Part - 1 [Live here](https://vue-js-noob.web.app/).
 
 ---
 
