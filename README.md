@@ -10,6 +10,12 @@ Simple Projects done by me while learning `Vue JS`.
 
 ---
 
+#### Task 2 ( Lyric Search App )
+
+- This Site is Live [here](https://vue-noob-2.netlify.app)
+
+---
+
 ### Setup on Local Enviroment
 
 ```
