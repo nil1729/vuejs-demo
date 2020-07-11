@@ -1,7 +1,7 @@
 <template>
 	<div class="container">
-		<h3 v-if="initial" class="text-center mt-2 mb-4">Top 10 Tracks</h3>
-		<h3 v-else class="text-center mt-2 mb-4">Search Results</h3>
+		<h3 v-if="initial" class="text-center mb-4">Top 10 Tracks</h3>
+		<h3 v-else class="text-center mb-4">Search Results</h3>
 		<div class="row">
 			<div
 				:key="item.track.track_id"

@@ -10,7 +10,7 @@
 				<i class="fas fa-compact-disc"></i>
 				{{ track.album_name }}
 			</p>
-			<router-link to="/" class="btn btn-sm btn-info">
+			<router-link :to="'/track/' + track.track_id" class="btn btn-sm btn-info">
 				<i class="fas fa-headphones"></i>
 				View Lyrics
 			</router-link>
@@ -20,7 +20,7 @@
 
 <script>
 export default {
-	nama: 'ResultItem',
+	name: 'ResultItem',
 	props: ['track'],
 };
 </script>
