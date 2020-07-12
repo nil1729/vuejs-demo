@@ -47,6 +47,8 @@ $ npm run serve
    - Part - 1 [Live here](https://nil1729.github.io/Vue-Noob/vue-noob-COMP-1).
 7. Understanding Communication betwwen Components
    - Part - 1 [Live here](https://vue-js-noob.web.app/).
+8. Understanding Slots and Dynamic Components
+   - Part - 1 [Live here](https://vue-comp-3.web.app/).
 
 ---
 
