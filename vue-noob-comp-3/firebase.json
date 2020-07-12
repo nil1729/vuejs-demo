@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "vue-comp-3",
+    "public": "dist",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
