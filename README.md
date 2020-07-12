@@ -37,7 +37,7 @@ $ npm run serve
    - Part - 4 [Live here](https://nil1729.github.io/Vue-Noob/vue-noob-DOM-4/)
 2. Using Conditionals and Rendering Lists
    - Part - 1 [Live here](https://nil1729.github.io/Vue-Noob/vue-noob-COND-1/)
-3. The Monster Slayer ( First Project based on Module 1 & Module 2 )
+3. **The Monster Slayer** ( First Project based on Module 1 & Module 2 )
    - This site is live [here](https://nil1729.github.io/Vue-Noob/vue-noob-PROJ-1)
 4. Understanding the VueJS Instance
    - Part - 1 [Live here](https://nil1729.github.io/Vue-Noob/vue-noob-INST-1/)
@@ -49,6 +49,8 @@ $ npm run serve
    - Part - 1 [Live here](https://vue-js-noob.web.app/).
 8. Understanding Slots and Dynamic Components
    - Part - 1 [Live here](https://vue-comp-3.web.app/).
+9. **Wonderful Quotes** ( Second Project based on above Modules )
+   - This site is hosted on firebase. See Demo [here](https://vue-proj-2.web.app/)
 
 ---
 
