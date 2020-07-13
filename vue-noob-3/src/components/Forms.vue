@@ -10,7 +10,13 @@
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">visibility</i>
-        <input required v-model="userInput.__id" type="text" class="validate" />
+        <input
+          :disabled="userInput.id!==''"
+          required
+          v-model="userInput.__id"
+          type="text"
+          class="validate"
+        />
         <label :class="{active: employee}" for="icon_prefix">Employee ID</label>
       </div>
     </div>
@@ -56,7 +62,7 @@ export default {
   },
   methods: {
     handleSubmit() {
-      if (this.checkValidity()) {
+      if (this.userInput.id !== "" || this.checkValidity()) {
         this.$emit("submittedForm", {
           ...this.userInput,
           type: `${this.employee ? "edit" : "add"}`
@@ -65,7 +71,7 @@ export default {
         this.userInput = { name: "", __id: "", dept: "", post: "", id: "" };
       } else {
         M.toast({
-          html: `Employee with ${this.userInput.__id} already exists`
+          html: `Employee with ID ${this.userInput.__id} already exists`
         });
       }
     },
@@ -82,6 +88,3 @@ export default {
   }
 };
 </script>
-
-<style>
-</style>

@@ -44,7 +44,7 @@ export default {
         .add(data)
         .then(function() {
           vm.fetchData();
-          vm.$router.push("/");
+          vm.$router.push(`/view/${data.__id}`);
         })
         .catch(function(error) {
           console.error("Error adding document: ", error);
@@ -57,7 +57,7 @@ export default {
         .set(data)
         .then(function() {
           vm.fetchData();
-          vm.$router.push("/");
+          vm.$router.push(`/view/${data.__id}`);
         })
         .catch(function(error) {
           console.error("Error updating document: ", error);
