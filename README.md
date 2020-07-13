@@ -16,6 +16,12 @@ Simple Projects done by me while learning `Vue JS`.
 
 ---
 
+#### Task 3 ( Employee Manager App )
+
+- This Site is Live [here](https://vue-noob-nil-3.web.app/)
+
+---
+
 ### Setup on Local Enviroment
 
 ```

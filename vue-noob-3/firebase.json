@@ -1,0 +1,7 @@
+{
+	"hosting": {
+		"site": "vue-noob-nil-3",
+		"public": "dist",
+		"ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+	}
+}
