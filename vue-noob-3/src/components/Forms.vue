@@ -4,28 +4,28 @@
       <div class="input-field col s12">
         <i class="material-icons prefix">account_circle</i>
         <input v-model="userInput.name" type="text" class="validate" />
-        <label for="icon_prefix">Full Name</label>
+        <label :class="{active: employee}" for="icon_prefix">Full Name</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">visibility</i>
         <input v-model="userInput.__id" type="text" class="validate" />
-        <label for="icon_prefix">Employee ID</label>
+        <label :class="{active: employee}" for="icon_prefix">Employee ID</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">business</i>
         <input v-model="userInput.dept" type="text" class="validate" />
-        <label for="icon_prefix">Department</label>
+        <label :class="{active: employee}" for="icon_prefix">Department</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">local_library</i>
         <input v-model="userInput.post" type="text" class="validate" />
-        <label for="icon_prefix">Employee Position</label>
+        <label :class="{active: employee}" for="icon_prefix">Employee Position</label>
       </div>
     </div>
     <div class="row center">
@@ -40,20 +40,25 @@
 <script>
 export default {
   name: "appForm",
+  props: ["employee"],
   data() {
     return {
       userInput: {
-        name: "",
-        __id: "",
-        dept: "",
-        post: ""
+        name: this.employee ? this.employee.name : "",
+        __id: this.employee ? this.employee.__id : "",
+        dept: this.employee ? this.employee.dept : "",
+        post: this.employee ? this.employee.post : "",
+        id: this.employee ? this.employee.id : ""
       }
     };
   },
   methods: {
     handleSubmit() {
-      this.$emit("submittedForm", { ...this.userInput });
-      this.userInput = { name: "", __id: "", dept: "", post: "" };
+      this.$emit("submittedForm", {
+        ...this.userInput,
+        type: `${this.employee ? "edit" : "add"}`
+      });
+      this.userInput = { name: "", __id: "", dept: "", post: "", id: "" };
     }
   }
 };

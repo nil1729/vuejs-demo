@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import AddEmployee from '../views/Add.vue'
 import ViewEmployee from '../views/About.vue';
+import EditEmployee from '../views/Edit';
 
 Vue.use(VueRouter)
 
@@ -20,6 +21,11 @@ const routes = [{
     path: '/view/:id',
     name: 'ViewEmployee',
     component: ViewEmployee
+  },
+  {
+    path: '/edit/:id',
+    name: 'EditEmployee',
+    component: EditEmployee
   }
 ]
 

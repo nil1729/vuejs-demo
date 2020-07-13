@@ -5,7 +5,7 @@
       <app-detail :employee="employee" />
       <router-link to="/" class="brown lighten-1 waves-effect waves-light btn">Back</router-link>
       <button @click="$emit('deleteData', id)" class="waves-effect waves-light btn red">Delete</button>
-      <app-button mode="edit" />
+      <app-button mode="edit" :id="employee.__id" />
     </div>
   </div>
 </template>

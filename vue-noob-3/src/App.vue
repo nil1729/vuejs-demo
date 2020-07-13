@@ -29,7 +29,9 @@ export default {
   methods: {
     handleSubmit(ev) {
       if (ev.type === "add") {
-        this.addData(ev.data);
+        return this.addData(ev.data);
+      } else {
+        return this.updateData(ev.data);
       }
     },
     addData(data) {
@@ -42,6 +44,19 @@ export default {
         })
         .catch(function(error) {
           console.error("Error adding document: ", error);
+        });
+    },
+    updateData(data) {
+      const vm = this;
+      db.collection("employees")
+        .doc(data.id)
+        .set(data)
+        .then(function() {
+          vm.fetchData();
+          vm.$router.push("/");
+        })
+        .catch(function(error) {
+          console.error("Error updating document: ", error);
         });
     },
     fetchData() {
