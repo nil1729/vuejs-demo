@@ -10,6 +10,7 @@
   </div>
 </template>
 <script>
+import M from "materialize-css/dist/js/materialize";
 import Navbar from "@/components/Navbar";
 import db from "@/firebase/index.js";
 export default {
@@ -22,6 +23,9 @@ export default {
       employees: [],
       loading: false
     };
+  },
+  beforeCreate() {
+    M.AutoInit();
   },
   created() {
     this.fetchData();

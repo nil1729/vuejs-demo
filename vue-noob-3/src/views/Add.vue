@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <h4 class="center light-green-text">Add Employee</h4>
-      <app-form @submittedForm="passData" />
+      <app-form :employees="$attrs.employees" @submittedForm="passData" />
     </div>
   </div>
 </template>

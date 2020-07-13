@@ -3,7 +3,12 @@
     <div class="row">
       <h4 class="center light-green-text">Edit Employee</h4>
       <appLoader v-if="!employee" />
-      <app-form :employee="employee" v-else @submittedForm="passData" />
+      <app-form
+        :employees="$attrs.employees"
+        :employee="employee"
+        v-else
+        @submittedForm="passData"
+      />
     </div>
   </div>
 </template>
