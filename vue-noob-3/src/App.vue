@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <app-navbar />
-    <router-view :employees="employees" :loading="loading" />
+    <router-view
+      @deleteData="handleDelete"
+      @submittedForm="handleSubmit"
+      :employees="employees"
+      :loading="loading"
+    />
   </div>
 </template>
 <script>
@@ -19,24 +24,63 @@ export default {
     };
   },
   created() {
-    const docRef = db.collection("employees");
-    this.loading = true;
-    const vm = this;
-    docRef
-      .get()
-      .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-          vm.employees.push(doc.data());
+    this.fetchData();
+  },
+  methods: {
+    handleSubmit(ev) {
+      if (ev.type === "add") {
+        this.addData(ev.data);
+      }
+    },
+    addData(data) {
+      const vm = this;
+      db.collection("employees")
+        .add(data)
+        .then(function() {
+          vm.fetchData();
+          vm.$router.push("/");
+        })
+        .catch(function(error) {
+          console.error("Error adding document: ", error);
         });
-      })
-      .then(() => {
-        vm.loading = false;
-      })
-      .catch(function(error) {
-        console.log("Error getting document:", error);
-      });
+    },
+    fetchData() {
+      this.loading = true;
+      const vm = this;
+      db.collection("employees")
+        .orderBy("dept")
+        .get()
+        .then(function(querySnapshot) {
+          vm.employees = [];
+          querySnapshot.forEach(function(doc) {
+            vm.employees.push(doc.data());
+          });
+        })
+        .then(() => {
+          vm.loading = false;
+        })
+        .catch(function(error) {
+          console.log("Error getting document:", error);
+        });
+    },
+    handleDelete(ev) {
+      const vm = this;
+      db.collection("employees")
+        .doc(ev)
+        .delete()
+        .then(function() {
+          vm.fetchData();
+          vm.$router.push("/");
+        })
+        .catch(function(error) {
+          console.log("Error removing document:", error);
+        });
+    }
   }
 };
 </script>
-<style>
+<style scoped>
+#app {
+  min-height: 100vh;
+}
 </style>
