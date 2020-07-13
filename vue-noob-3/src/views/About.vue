@@ -4,7 +4,7 @@
     <div v-else>
       <app-detail :employee="employee" />
       <router-link to="/" class="brown lighten-1 waves-effect waves-light btn">Back</router-link>
-      <button @click="$emit('deleteData', id)" class="waves-effect waves-light btn red">Delete</button>
+      <button @click="handleDelete" class="waves-effect waves-light btn red">Delete</button>
       <app-button mode="edit" :id="employee.__id" />
     </div>
   </div>
@@ -39,6 +39,13 @@ export default {
       .catch(function(error) {
         console.log("Error getting document:", error);
       });
+  },
+  methods: {
+    handleDelete() {
+      if (confirm(`Are you sure to delete ${this.employee.name}`)) {
+        this.$emit("deleteData", this.id);
+      }
+    }
   }
 };
 </script>
