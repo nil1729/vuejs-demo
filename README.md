@@ -61,6 +61,8 @@ $ npm run serve
     - Part - 1 [Live here](https://vue-form-1.web.app/)
 11. Understanding Vue JS Custom Directives
     - Part - 1 [Live here](https://vue-noob-directive.web.app/)
+12. Understanding Filters and Mixins
+    - Part - 1 [Live here](https://vue-noob-filter.web.app/).
 
 ---
 
