@@ -64,7 +64,7 @@ $ npm run serve
 12. Understanding Filters and Mixins
     - Part - 1 [Live here](https://vue-noob-filter.web.app/).
 13. Understanding sending HTTP requests from VueJS Application.
-    -Part - 1 [Live here](https://vue-noob-http-1.web.app/)
+    - Part - 1 [Live here](https://vue-noob-http-1.web.app/)
 
 ---
 
