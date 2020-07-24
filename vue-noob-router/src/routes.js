@@ -1,5 +1,5 @@
 import Home from '@/components/pages/Home.vue';
-// import About from '@/components/pages/About.vue';
+import About from '@/components/pages/About.vue';
 import User from '@/components/pages/User.vue';
 import UserStart from '@/components/User/UserStart.vue';
 import UserDetail from '@/components/User/UserDetail.vue';
@@ -9,10 +9,17 @@ import NotFound from '@/components/pages/404.vue';
 export const routes = [
 	{
 		path: '/',
-		component: Home,
 		name: 'Home',
 		components: {
 			default: Home,
+			'navbar-top': Navbar,
+		},
+	},
+	{
+		name: 'About',
+		path: '/about',
+		components: {
+			default: About,
 			'navbar-top': Navbar,
 		},
 	},
