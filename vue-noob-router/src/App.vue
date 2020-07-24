@@ -1,17 +1,16 @@
 <template>
-  <div id="app">
-    <app-navbar />
+  <div class="container">
+    <h1 class="text-center text-primary">Routing</h1>
+    <hr class="my-3" />
+    <router-view name="navbar-top" />
     <router-view />
+    <router-view name="navbar-bottom" />
   </div>
 </template>
 
 <script>
-import Navbar from "@/components/layouts/Navbar";
 export default {
   name: "App",
-  components: {
-    appNavbar: Navbar
-  }
 };
 </script>
 

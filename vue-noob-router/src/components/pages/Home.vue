@@ -1,12 +1,16 @@
 <template>
-  <div class="container center">
-    <h1 class="light-green-text">Home Page</h1>
+  <div class="container">
+    <hr class="mb-3" />
+    <h1 class="text-success">Home Page</h1>
+    <p
+      class="lead"
+    >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae ab quidem quibusdam tempore voluptas consectetur temporibus eligendi tenetur maiores. Repellat adipisci minus sed doloribus voluptatibus nesciunt error non! Tempore delectus, assumenda quod ratione nisi suscipit eum consequuntur quisquam voluptate repellendus.</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: "AppHome"
+  name: "AppHome",
 };
 </script>
 
