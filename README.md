@@ -65,6 +65,8 @@ $ npm run serve
     - Part - 1 [Live here](https://vue-noob-filter.web.app/).
 13. Understanding sending HTTP requests from VueJS Application.
     - Part - 1 [Live here](https://vue-noob-http-1.web.app/)
+14. Understanding Routing in Vue JS Application
+    - Part - 1 [Live here](https://vue-router-nil-1.web.app/)
 
 ---
 

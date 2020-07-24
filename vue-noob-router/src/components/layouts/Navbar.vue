@@ -28,7 +28,7 @@ export default {
   name: "AppNavbar",
   data() {
     return {
-      index: 3,
+      index: 2,
     };
   },
   watch: {
