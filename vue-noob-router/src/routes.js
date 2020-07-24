@@ -10,6 +10,7 @@ export const routes = [
 	{
 		path: '/',
 		component: Home,
+		name: 'Home',
 		components: {
 			default: Home,
 			'navbar-top': Navbar,
@@ -37,6 +38,10 @@ export const routes = [
 			default: User,
 			'navbar-bottom': Navbar,
 		},
+	},
+	{
+		path: '/redirect-me',
+		redirect: { name: 'Home' },
 	},
 	{
 		path: '*',
