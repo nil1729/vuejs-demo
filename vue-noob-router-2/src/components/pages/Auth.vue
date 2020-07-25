@@ -1,14 +1,14 @@
 <template>
   <div class="container p-4">
     <h3 class="text-center">{{ mode | toUpperCase }}</h3>
-    <div class="toast" :class="{show: error }" role="alert">
+    <div class="toast" :class="{show: $attrs.alerts }" role="alert">
       <div class="toast-header">
-        <strong class="mr-auto text-danger">Error</strong>
-        <button @click="error = ''" type="button" class="ml-2 mb-1 close">
+        <strong class="mr-auto text-danger">{{ $attrs.alerts && $attrs.alerts.code }}</strong>
+        <button @click="$attrs.clearAlerts()" type="button" class="ml-2 mb-1 close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="toast-body">{{ error }}</div>
+      <div class="toast-body">{{ $attrs.alerts && $attrs.alerts.message }}</div>
     </div>
     <form @submit.prevent="handleSubmit">
       <div class="form-group">
@@ -52,7 +52,6 @@ export default {
       email: "",
       password: "",
       mode: "login",
-      error: "",
       submitted: false,
     };
   },
@@ -62,16 +61,6 @@ export default {
     },
   },
   watch: {
-    error() {
-      const vm = this;
-      if (vm.error !== "") {
-        setTimeout(() => {
-          vm.error = "";
-        }, 4000);
-      } else {
-        clearTimeout();
-      }
-    },
     "$attrs.isAuthenticated"() {
       if (this.$attrs.isAuthenticated) {
         this.$router.push({
@@ -80,23 +69,32 @@ export default {
       }
     },
   },
+  beforeMount() {
+    if (this.$attrs.isAuthenticated) {
+      this.$router.push({
+        name: "Home",
+      });
+    }
+  },
   methods: {
     handleSubmit: async function () {
       this.submitted = true;
       if (!this.validateEmail(this.email)) {
         this.submitted = false;
-        return (this.error = "Please enter a valid Email Address");
+        return this.$attrs.createAlert({
+          code: "Validation Error",
+          message: "Please enter a valid Email Address",
+        });
       }
-      const res = await this.$attrs.handleAuth({
+      const err = await this.$attrs.handleAuth({
         email: this.email,
         password: this.password,
         mode: this.mode,
       });
-      if (res) {
+      if (err) {
         this.submitted = false;
-        return (this.error = res);
+        return this.$attrs.createAlert(err);
       }
-      this.submitted = false;
       this.email = "";
       this.password = "";
     },

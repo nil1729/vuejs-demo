@@ -10,6 +10,7 @@
       @click="$attrs.handleAuth({mode: 'signout'})"
       class="btn btn-sm btn-warning text-dark"
     >Sign out</button>
+    <button @click="$router.push('/something')" class="btn btn-sm btn-danger mx-2">Go Somewhere</button>
   </div>
 </template>
 
@@ -25,6 +26,15 @@ export default {
   mounted() {
     this.email =
       firebase.auth().currentUser && firebase.auth().currentUser.email;
+  },
+  beforeRouteLeave(to, from, next) {
+    if (!this.$attrs.isAuthenticated) {
+      next();
+    } else {
+      if (confirm("Are you sure you want to leave ?")) {
+        next();
+      }
+    }
   },
   watch: {
     "$attrs.isAuthenticated"() {
