@@ -1,0 +1,13 @@
+{
+	"hosting": {
+		"site": "vue-noob-router-2",
+		"public": "dist",
+		"ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+		"rewrites": [
+			{
+				"source": "**",
+				"destination": "/index.html"
+			}
+		]
+	}
+}
