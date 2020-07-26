@@ -1,6 +1,7 @@
 <template>
   <div>
     <app-navbar />
+    <app-alerts />
     <div class="my-3">
       <router-view />
     </div>
@@ -9,16 +10,23 @@
 
 <script>
 import Navbar from "./components/layouts/Navbar";
+import Alerts from "./components/layouts/Alerts";
 export default {
   name: "App",
   components: {
     appNavbar: Navbar,
+    appAlerts: Alerts,
   },
 };
 </script>
 
 <style>
-button {
+button,
+input {
   box-shadow: none !important;
+  outline: none !important;
+}
+::-webkit-scrollbar {
+  width: 0;
 }
 </style>
