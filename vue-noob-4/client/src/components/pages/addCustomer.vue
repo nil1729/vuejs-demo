@@ -109,13 +109,26 @@ export default {
     handleSubmit: async function () {
       this.submitted = true;
       if (!this.validateEmail(this.customer.email)) {
+        this.submitted = false;
         return this.$store.dispatch("setAlert", {
           type: "Error",
           msg: "Please enter a valid Email Address",
         });
       }
-      const res = await this.$store.dispatch("addCustomer", this.customer);
-      console.log(res, "FROM COMPONENT");
+      const err = await this.$store.dispatch("addCustomer", this.customer);
+      if (err) {
+        this.submitted = false;
+        return this.$store.dispatch("setAlert", {
+          type: "Error",
+          msg: err[0].message,
+        });
+      }
+      this.submitted = false;
+      this.$store.dispatch("setAlert", {
+        type: "Notification",
+        msg: `${this.customer.firstName} is Successfully added with Email ${this.customer.email}`,
+      });
+      this.$router.push("/");
     },
     validateEmail(email) {
       const reg = new RegExp(

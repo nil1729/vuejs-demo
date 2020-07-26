@@ -4,7 +4,7 @@
       <h1 class="display-4">vCustomers MEVN Stack App</h1>
       <hr class="my-2" />
       <p
-        class="lead"
+        class="lead mb-4"
       >This is a Simple Application that uses NodeJS to manage backends and VueJS as Frontend</p>
       <a
         target="_blank"
