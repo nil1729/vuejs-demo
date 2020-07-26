@@ -28,8 +28,8 @@ const store = new Vuex.Store({
 		loading: false,
 		customerLoading: false,
 		currentCustomer: null,
+		filteredList: null,
 	},
-	getters: {},
 	actions: {
 		customers: async context => {
 			const query = JSON.stringify({
@@ -102,6 +102,32 @@ const store = new Vuex.Store({
 			}
 			context.commit('ADD_CUSTOMER', res.data.createCustomer);
 		},
+		updateCustomer: async (context, { _id, customer }) => {
+			const query = JSON.stringify({
+				query: `
+					mutation {
+						updateCustomer(_id:"${_id}" ,
+						customerInput: {
+							email:"${customer.email}", 
+							phone:"${customer.phone}", 
+							city:"${customer.city}", 
+							state: "${customer.state}", 
+							address: "${customer.address}", 
+							firstName: "${customer.firstName}", 
+							lastName: "${customer.lastName}"}) {
+							email
+							_id
+							address
+						}
+					}
+			    `,
+			});
+			const res = await sendRequest(query);
+			if (res.errors) {
+				return res.errors;
+			}
+			// context.commit('ADD_CUSTOMER', res.data.updateCustomer);
+		},
 		deleteCustomer: async (context, payload) => {
 			const query = JSON.stringify({
 				query: `
@@ -151,6 +177,21 @@ const store = new Vuex.Store({
 		},
 		CLEAR_CURRENT_CUSTOMER(state) {
 			return (state.currentCustomer = null);
+		},
+		FILTER_LIST(state, payload) {
+			const regex = new RegExp(payload, 'gi');
+			return (state.filteredList = state.customers.filter(customer => {
+				if (
+					regex.test(customer.firstName) ||
+					regex.test(customer.lastName) ||
+					regex.test(customer.email)
+				) {
+					return customer;
+				}
+			}));
+		},
+		CLEAR_FILTER(state) {
+			return (state.filteredList = null);
 		},
 	},
 });

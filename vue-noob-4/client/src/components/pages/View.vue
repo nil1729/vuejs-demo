@@ -6,7 +6,7 @@
       <div class="mt-3 d-flex align-items-center">
         <h1 class="text-dark">{{ customer.firstName }} {{ customer.lastName }}</h1>
         <div class="ml-auto">
-          <button class="btn btn-info">Edit</button>
+          <router-link :to="`/edit/${$route.params.id}`" class="btn btn-info">Edit</router-link>
           <button
             @click="handleDelete"
             class="btn btn-danger ml-2"
@@ -95,8 +95,12 @@ export default {
     },
   },
   beforeRouteLeave(to, from, next) {
-    this.$store.commit("CLEAR_CURRENT_CUSTOMER");
-    next();
+    if (to.name === "EditCustomer") {
+      next();
+    } else {
+      this.$store.commit("CLEAR_CURRENT_CUSTOMER");
+      next();
+    }
   },
 };
 </script>

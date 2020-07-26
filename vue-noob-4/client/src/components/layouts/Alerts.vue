@@ -7,7 +7,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="toast-body">{{ $store.state.alerts && $store.state.alerts.msg }}</div>
+      <div class="toast-body" v-html="$store.state.alerts && $store.state.alerts.msg"></div>
     </div>
   </div>
 </template>

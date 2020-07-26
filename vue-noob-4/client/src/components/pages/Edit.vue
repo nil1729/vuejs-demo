@@ -1,8 +1,11 @@
 <template>
   <div class="container">
-    <h1 class="text-primary">Add Customer</h1>
+    <h1
+      class="text-primary"
+    >Edit {{ $store.state.customerLoading ? 'Customer' : $store.state.currentCustomer.firstName }}</h1>
     <hr class="my-2" />
-    <form @submit.prevent="handleSubmit">
+    <h3 v-if="$store.state.customerLoading" class="text-center text-success my-3">Loading ...</h3>
+    <form v-else @submit.prevent="handleSubmit">
       <div class="jumbotron my-3 p-4">
         <h4>Customer Info</h4>
         <div class="form-group">
@@ -105,6 +108,18 @@ export default {
       submitted: false,
     };
   },
+  created: async function () {
+    if (!this.$store.state.currentCustomer) {
+      const err = await this.$store.dispatch("customer", this.$route.params.id);
+      if (err) {
+        return this.$store.dispatch("setAlert", {
+          type: "Error",
+          msg: err[0].message,
+        });
+      }
+    }
+    this.customer = this.$store.state.currentCustomer;
+  },
   methods: {
     handleSubmit: async function () {
       this.submitted = true;
@@ -115,7 +130,10 @@ export default {
           msg: "Please enter a valid Email Address",
         });
       }
-      const err = await this.$store.dispatch("addCustomer", this.customer);
+      const err = await this.$store.dispatch("updateCustomer", {
+        customer: this.customer,
+        _id: this.$route.params.id,
+      });
       if (err) {
         this.submitted = false;
         return this.$store.dispatch("setAlert", {
@@ -126,7 +144,7 @@ export default {
       this.submitted = false;
       this.$store.dispatch("setAlert", {
         type: "Notification",
-        msg: `${this.customer.firstName} is Successfully added with Email <em>${this.customer.email}</em>`,
+        msg: `${this.customer.firstName} is Successfully Updated with Email <em>${this.customer.email}</em>`,
       });
       this.$router.push("/");
     },
@@ -136,6 +154,10 @@ export default {
       );
       return reg.test(email);
     },
+  },
+  beforeRouteLeave(to, from, next) {
+    this.$store.commit("CLEAR_CURRENT_CUSTOMER");
+    next();
   },
 };
 </script>

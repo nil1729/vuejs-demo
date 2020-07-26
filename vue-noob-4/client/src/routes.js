@@ -2,6 +2,7 @@ import Home from './components/pages/Home.vue';
 import About from './components/pages/About.vue';
 import AddCustomer from './components/pages/addCustomer.vue';
 import ViewCustomer from './components/pages/View.vue';
+import EditCustomer from './components/pages/Edit.vue';
 const routes = [
 	{
 		path: '/',
@@ -22,6 +23,11 @@ const routes = [
 		path: '/view/:id',
 		component: ViewCustomer,
 		name: 'ViewCustomer',
+	},
+	{
+		path: '/edit/:id',
+		component: EditCustomer,
+		name: 'EditCustomer',
 	},
 ];
 

@@ -5,24 +5,21 @@ const express = require('express');
 const app = express();
 const connectDB = require('./config/db');
 const { graphqlHTTP } = require('express-graphql');
-const { buildSchema } = require('graphql');
+const schema = require('./graphql/schema');
+const resolvers = require('./graphql/resolvers');
 
 connectDB();
 
-app.use(express.json());
+if (process.env.NODE_ENV !== 'production') {
+	app.use(require('cors')());
+}
 
+app.use(express.json());
 app.use(
 	'/api_v1_graphql',
 	graphqlHTTP({
-		schema: buildSchema(`
-			type RootQuery {
-				helloWorld: ID
-			}
-			schema {
-				query: RootQuery
-			}
-		`),
-		rootValue: { hello: () => {} },
+		schema,
+		rootValue: resolvers,
 		graphiql: process.env.NODE_ENV === 'production' ? false : true,
 	})
 );

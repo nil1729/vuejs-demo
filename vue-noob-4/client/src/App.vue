@@ -22,7 +22,8 @@ export default {
 
 <style>
 button,
-input {
+input,
+.btn {
   box-shadow: none !important;
   outline: none !important;
 }
