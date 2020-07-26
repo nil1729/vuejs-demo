@@ -68,6 +68,8 @@ $ npm run serve
 14. Understanding Routing in Vue JS Application
     - Part - 1 [Live here](https://vue-router-nil-1.web.app/)
     - Part - 2 [Live here](https://vue-noob-router-2.web.app/)
+15. Understanding State Mangement in Vue JS using Vuex
+    - Part - 1 [Live here](https://vue-noob-vuex.web.app/)
 
 ---
 

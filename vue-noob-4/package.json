@@ -1,20 +1,26 @@
 {
-  "name": "vue-noob-4",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.17.1",
-    "express-graphql": "^0.11.0",
-    "graphql": "^15.3.0",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.25"
-  }
+	"name": "vue-noob-4",
+	"version": "1.0.0",
+	"description": "",
+	"main": "server.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node server.js",
+		"server": "nodemon server"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"express": "^4.17.1",
+		"express-graphql": "^0.11.0",
+		"graphql": "^15.3.0",
+		"jsonwebtoken": "^8.5.1",
+		"mongoose": "^5.9.25"
+	},
+	"devDependencies": {
+		"concurrently": "^5.2.0",
+		"dotenv": "^8.2.0",
+		"nodemon": "^2.0.4"
+	}
 }
