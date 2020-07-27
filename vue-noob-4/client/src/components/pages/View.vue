@@ -6,10 +6,10 @@
       <div class="mt-3 d-flex align-items-center">
         <h1 class="text-dark">{{ customer.firstName }} {{ customer.lastName }}</h1>
         <div class="ml-auto">
-          <router-link :to="`/edit/${$route.params.id}`" class="btn btn-info">Edit</router-link>
+          <router-link :to="`/edit/${$route.params.id}`" class="btn btn-sm btn-info">Edit</router-link>
           <button
             @click="handleDelete"
-            class="btn btn-danger ml-2"
+            class="btn btn-sm btn-danger ml-2"
           >{{ dltBtnClicked ? 'Loading ...' : 'Delete' }}</button>
         </div>
       </div>

@@ -2,7 +2,12 @@ node_modules
 .env
 .DS_Store
 node_modules
-/dist
+
+# For Github Files only
+dist
+public
+# For Server Files only
+# client
 
 # local env files
 .env.local

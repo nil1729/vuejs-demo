@@ -29,7 +29,7 @@
           <td>{{ customer.lastName }}</td>
           <td>{{ customer.email }}</td>
           <td>
-            <router-link class="btn btn-secondary" :to="`/view/${customer._id}`">View</router-link>
+            <router-link class="btn btn-sm btn-secondary" :to="`/view/${customer._id}`">View</router-link>
           </td>
         </tr>
         <tr v-else v-for="customer in customers" :key="customer._id">
@@ -37,7 +37,7 @@
           <td>{{ customer.lastName }}</td>
           <td>{{ customer.email }}</td>
           <td>
-            <router-link class="btn btn-secondary" :to="`/view/${customer._id}`">View</router-link>
+            <router-link class="btn btn-sm btn-secondary" :to="`/view/${customer._id}`">View</router-link>
           </td>
         </tr>
       </tbody>

@@ -22,6 +22,10 @@ Simple Projects done by me while learning `Vue JS`.
 
 ---
 
+#### Task 4 ( Simple MEVN Stack Application )
+
+- This site is deployed to `Heroku` and see demo [here](https://mevn-noob-1.herokuapp.com/)
+
 ### Setup on Local Enviroment
 
 ```

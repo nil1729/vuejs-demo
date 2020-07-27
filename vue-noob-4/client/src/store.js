@@ -12,11 +12,7 @@ const sendRequest = async body => {
 		body,
 		redirect: 'follow',
 	};
-	let uri = ``;
-	if (process.env.NODE_ENV !== 'production') {
-		uri += 'http://localhost:5000';
-	}
-	const res = await fetch(`${uri}/api_v1_graphql`, requestOptions);
+	const res = await fetch(`/api_v1_graphql`, requestOptions);
 	const JSONData = await res.json();
 	return JSONData;
 };
