@@ -1,0 +1,216 @@
+[
+	{
+		"IC": "S K Choudhary",
+		"courseNo": 1160,
+		"courseCode": "GS F243",
+		"courseName": "CURRENT AFFAIRS",
+		"units": 3,
+		"comprehensiveExamDate": "2021-05-04T03:30:00.000Z",
+		"lectures": [
+			{
+				"section": "L1",
+				"dhString": "M W F  6",
+				"timings": [
+					{ "day": "Monday", "dayCode": "M", "time": "13:00 - 13:50" },
+					{ "day": "Wednesday", "dayCode": "W", "time": "13:00 - 13:50" },
+					{ "day": "Friday", "dayCode": "F", "time": "13:00 - 13:50" }
+				],
+				"instructors": ["S K Choudhary"]
+			}
+		],
+		"tutorials": [],
+		"labs": []
+	},
+	{
+		"IC": "Madhurima Das",
+		"courseNo": 1173,
+		"courseCode": "GS F311",
+		"courseName": "INTRO TO CONFLICT MGMT",
+		"units": 3,
+		"comprehensiveExamDate": "2021-05-10T03:30:00.000Z",
+		"lectures": [
+			{
+				"section": "L1",
+				"dhString": "M W F  5",
+				"timings": [
+					{ "day": "Monday", "dayCode": "M", "time": "12:00 - 12:50" },
+					{ "day": "Wednesday", "dayCode": "W", "time": "12:00 - 12:50" },
+					{ "day": "Friday", "dayCode": "F", "time": "12:00 - 12:50" }
+				],
+				"instructors": ["Madhurima Das"]
+			}
+		],
+		"tutorials": [],
+		"labs": []
+	},
+	{
+		"IC": "Nitin Chaturvedi",
+		"courseNo": 1313,
+		"courseCode": "CS F241",
+		"courseName": "MICROPROC & INTERFACING",
+		"units": 4,
+		"comprehensiveExamDate": "2021-05-05T03:30:00.000Z",
+		"lectures": [
+			{
+				"section": "L1",
+				"dhString": "M W F  3",
+				"timings": [
+					{ "day": "Monday", "dayCode": "M", "time": "10:00 - 10:50" },
+					{ "day": "Wednesday", "dayCode": "W", "time": "10:00 - 10:50" },
+					{ "day": "Friday", "dayCode": "F", "time": "10:00 - 10:50" }
+				],
+				"instructors": ["Gss Chalapathi"]
+			}
+		],
+		"tutorials": [
+			{
+				"section": "T1",
+				"dhString": "M  1",
+				"timings": [
+					{ "day": "Monday", "dayCode": "M", "time": "08:00 - 08:50" }
+				],
+				"instructors": ["Devesh Samaiya (RS)"]
+			}
+		],
+		"labs": [
+			{
+				"section": "P12",
+				"dhString": "Th  9 10",
+				"timings": [
+					{ "day": "Thursday", "dayCode": "Th", "time": "16:00 - 17:50" }
+				],
+				"instructors": ["Punit Khatri (RS)", "Radha Bhardwaj (RS)"]
+			}
+		]
+	},
+	{
+		"IC": "Amit Dua",
+		"courseNo": 1095,
+		"courseCode": "CS F212",
+		"courseName": "DATABASE SYSTEMS",
+		"units": 4,
+		"comprehensiveExamDate": "2021-05-07T03:30:00.000Z",
+		"lectures": [
+			{
+				"section": "L1",
+				"dhString": "T Th  4  W  10",
+				"timings": [
+					{ "day": "Tuesday", "dayCode": "T", "time": "11:00 - 11:50" },
+					{ "day": "Thursday", "dayCode": "Th", "time": "11:00 - 11:50" },
+					{ "day": "Wednesday", "dayCode": "W", "time": "17:00 - 17:50" }
+				],
+				"instructors": ["Amit Dua", "Mukesh Kumar Rohil"]
+			}
+		],
+		"labs": [
+			{
+				"section": "P5",
+				"dhString": "Th  7 8",
+				"timings": [
+					{ "day": "Thursday", "dayCode": "Th", "time": "14:00 - 15:50" }
+				],
+				"instructors": ["Upendra Singh (RS)"]
+			}
+		],
+		"tutorials": []
+	},
+	{
+		"IC": "Rahul Arora",
+		"courseNo": 1023,
+		"courseCode": "ECON F211",
+		"courseName": "PRINCIPLES OF ECONOMICS",
+		"units": 3,
+		"comprehensiveExamDate": "2021-05-11T08:30:00.000Z",
+		"lectures": [
+			{
+				"section": "L2",
+				"dhString": "M W F  7",
+				"timings": [
+					{ "day": "Monday", "dayCode": "M", "time": "14:00 - 14:50" },
+					{ "day": "Wednesday", "dayCode": "W", "time": "14:00 - 14:50" },
+					{ "day": "Friday", "dayCode": "F", "time": "14:00 - 14:50" }
+				],
+				"instructors": [
+					"Rahul Arora",
+					"Rajan Pandey",
+					"Krishna M",
+					"Geetilaxmi Mohapatra"
+				]
+			}
+		],
+		"tutorials": [
+			{
+				"section": "T9",
+				"dhString": "T  1",
+				"timings": [
+					{ "day": "Tuesday", "dayCode": "T", "time": "08:00 - 08:50" }
+				],
+				"instructors": ["Megha (RS)"]
+			}
+		],
+		"labs": []
+	},
+	{
+		"IC": "Vishal Gupta",
+		"courseNo": 1094,
+		"courseCode": "CS F211",
+		"courseName": "DATA STRUCTURES & ALGO",
+		"units": 4,
+		"comprehensiveExamDate": "2021-05-13T03:30:00.000Z",
+		"lectures": [
+			{
+				"section": "L1",
+				"dhString": "M  10  T Th  3",
+				"timings": [
+					{ "day": "Monday", "dayCode": "M", "time": "17:00 - 17:50" },
+					{ "day": "Tuesday", "dayCode": "T", "time": "10:00 - 10:50" },
+					{ "day": "Thursday", "dayCode": "Th", "time": "10:00 - 10:50" }
+				],
+				"instructors": ["Vishal Gupta", "L. Rajya Lakshmi"]
+			}
+		],
+		"labs": [
+			{
+				"section": "P1",
+				"dhString": "T  7 8",
+				"timings": [
+					{ "day": "Tuesday", "dayCode": "T", "time": "14:00 - 15:50" }
+				],
+				"instructors": ["Vishal Gupta", "L. Rajya Lakshmi"]
+			}
+		],
+		"tutorials": []
+	},
+	{
+		"IC": "Smita Raghuvanshi",
+		"courseNo": 1632,
+		"courseCode": "BITS F225",
+		"courseName": "ENVIRONMENTAL STUDIES",
+		"units": 3,
+		"comprehensiveExamDate": "2021-05-03T03:30:00.000Z",
+		"lectures": [
+			{
+				"section": "L1",
+				"dhString": "M W F  2",
+				"timings": [
+					{ "day": "Monday", "dayCode": "M", "time": "09:00 - 09:50" },
+					{ "day": "Wednesday", "dayCode": "W", "time": "09:00 - 09:50" },
+					{ "day": "Friday", "dayCode": "F", "time": "09:00 - 09:50" }
+				],
+				"instructors": [
+					"Smita Raghuvanshi",
+					"Madhurima Das",
+					"Rajneesh Choubisa",
+					"Tanu Shukla",
+					"B Vani",
+					"Sunita Raina",
+					"Harikrishnan Gopinadhan Nair",
+					"Arvind Kumar Sharma",
+					"Muthukumar G"
+				]
+			}
+		],
+		"tutorials": [],
+		"labs": []
+	}
+]

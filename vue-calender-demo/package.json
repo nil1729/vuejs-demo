@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "firebase": "^8.2.8",
     "vue": "^2.6.11",
+    "vue-textarea-autosize": "^1.1.1",
     "vuetify": "^2.4.0"
   },
   "devDependencies": {
