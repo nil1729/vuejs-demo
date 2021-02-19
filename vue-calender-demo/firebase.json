@@ -1,0 +1,13 @@
+{
+	"hosting": {
+		"site": "vue-calender-demo-nil",
+		"public": "dist",
+		"ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+		"rewrites": [
+			{
+				"source": "**",
+				"destination": "/index.html"
+			}
+		]
+	}
+}
