@@ -69,27 +69,18 @@
 					offset-x
 				>
 					<v-card color="grey lighten-4" min-width="350px" flat>
-						<v-toolbar :color="selectedEvent.color" dark>
-							<v-btn icon>
-								<v-icon>mdi-pencil</v-icon>
-							</v-btn>
-							<v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
+						<v-toolbar :color="selectedEvent.color" dark height="45">
+							<v-toolbar-title v-html="selectedEvent.title"></v-toolbar-title>
 							<v-spacer></v-spacer>
 							<v-btn icon>
-								<v-icon>mdi-heart</v-icon>
-							</v-btn>
-							<v-btn icon>
-								<v-icon>mdi-dots-vertical</v-icon>
+								<v-btn icon @click="selectedOpen = false">
+									<v-icon>mdi-close</v-icon>
+								</v-btn>
 							</v-btn>
 						</v-toolbar>
 						<v-card-text>
 							<span v-html="selectedEvent.details"></span>
 						</v-card-text>
-						<v-card-actions>
-							<v-btn text color="secondary" @click="selectedOpen = false">
-								Cancel
-							</v-btn>
-						</v-card-actions>
 					</v-card>
 				</v-menu>
 			</v-sheet>
@@ -99,6 +90,7 @@
 
 <script>
 import { db } from '../main';
+import moment from 'moment';
 export default {
 	data: () => ({
 		focus: '',
@@ -117,25 +109,16 @@ export default {
 		events: [],
 		courses: [],
 		dataLoaded: false,
-		colors: [
-			'blue',
-			'indigo',
-			'deep-purple',
-			'cyan',
-			'green',
-			'orange',
-			'grey darken-1',
-		],
-		names: [
-			'Meeting',
-			'Holiday',
-			'PTO',
-			'Travel',
-			'Event',
-			'Birthday',
-			'Conference',
-			'Party',
-		],
+		colorsMapper: {
+			labs: 'deep-purple',
+			lectures: 'green',
+			tutorials: 'orange',
+		},
+		typesMapper: {
+			labs: 'Practical',
+			lectures: 'Lecture',
+			tutorials: 'Tutorial',
+		},
 		daysMapper: {
 			0: 'Su',
 			1: 'M',
@@ -182,103 +165,22 @@ export default {
 			} else {
 				open();
 			}
-
 			nativeEvent.stopPropagation();
 		},
 		async getEvents() {
-			let events = [];
-
 			const snaps = await db.collection('courses').get();
-			let s = this.startTimestamp.date;
-			let e = this.endTimestamp.date;
 			let courses = [];
-			let daysArr = this.getDaysArray(s, e);
-
-			snaps.forEach((doc) => {
-				let evData = { id: doc.id, ...doc.data() };
-				courses.push(evData);
-			});
+			snaps.forEach((doc) => courses.push({ id: doc.id, ...doc.data() }));
 
 			this.courses = courses;
 			this.$emit('stopLoading');
 			this.dataLoaded = true;
 
-			for (let j = 0; j < daysArr.length; j++) {
-				let curDt = daysArr[j];
-				for (let i = 0; i < courses.length; i++) {
-					let sb = courses[i];
-					let lec = sb.lectures.length > 0,
-						tut = sb.tutorials.length > 0,
-						lab = sb.labs.length > 0;
-					if (lec) {
-						lec = sb.lectures[0];
-						let timings = lec.timings;
-						let curDtCode = this.daysMapper[curDt.getDay()];
-						let hasClass = timings.findIndex((it) => it.dayCode === curDtCode);
-						if (hasClass >= 0) {
-							let classHour = timings[hasClass].time;
-							let [s, e] = classHour.split(' - ');
-							let startEvent = `${curDt.toISOString().substr(0, 10)} ${s}`;
-							let endEvent = `${curDt.toISOString().substr(0, 10)} ${e}`;
-
-							let evData = {
-								start: startEvent,
-								end: endEvent,
-								color: 'green',
-								name: `${sb.courseCode} - ${lec.section}`,
-								details: `${sb.courseName} - ${lec.instructors.join(', ')}`,
-							};
-
-							events.push(evData);
-						}
-					}
-					if (tut) {
-						tut = sb.tutorials[0];
-						let timings = tut.timings;
-						let curDtCode = this.daysMapper[curDt.getDay()];
-						let hasClass = timings.findIndex((it) => it.dayCode === curDtCode);
-						if (hasClass >= 0) {
-							let classHour = timings[hasClass].time;
-							let [s, e] = classHour.split(' - ');
-							let startEvent = `${curDt.toISOString().substr(0, 10)} ${s}`;
-							let endEvent = `${curDt.toISOString().substr(0, 10)} ${e}`;
-
-							let evData = {
-								start: startEvent,
-								end: endEvent,
-								color: 'orange',
-								name: `${sb.courseCode} - ${tut.section}`,
-								details: `${sb.courseName} - ${tut.instructors.join(', ')}`,
-							};
-
-							events.push(evData);
-						}
-					}
-					if (lab) {
-						lab = sb.labs[0];
-						let timings = lab.timings;
-						let curDtCode = this.daysMapper[curDt.getDay()];
-						let hasClass = timings.findIndex((it) => it.dayCode === curDtCode);
-						if (hasClass >= 0) {
-							let classHour = timings[hasClass].time;
-							let [s, e] = classHour.split(' - ');
-							let startEvent = `${curDt.toISOString().substr(0, 10)} ${s}`;
-							let endEvent = `${curDt.toISOString().substr(0, 10)} ${e}`;
-
-							let evData = {
-								start: startEvent,
-								end: endEvent,
-								color: 'deep-purple',
-								name: `${sb.courseCode} - ${lab.section}`,
-								details: `${sb.courseName} - ${lab.instructors.join(', ')}`,
-							};
-
-							events.push(evData);
-						}
-					}
-				}
-			}
-			this.events = events;
+			let daysArr = this.getDaysArray(
+				this.startTimestamp.date,
+				this.endTimestamp.date
+			);
+			this.setCalenderSlots(daysArr);
 		},
 		getDaysArray(start, end) {
 			var arr = [];
@@ -294,14 +196,12 @@ export default {
 		updateRange({ start, end }) {
 			this.startTimestamp = start;
 			this.endTimestamp = end;
-
+			let daysArr = this.getDaysArray(start.date, end.date);
+			this.setCalenderSlots(daysArr);
+		},
+		setCalenderSlots(daysArr) {
 			let events = [];
-
-			let s = start.date;
-			let e = end.date;
 			let courses = this.courses;
-			let daysArr = this.getDaysArray(s, e);
-
 			for (let j = 0; j < daysArr.length; j++) {
 				let curDt = daysArr[j];
 				for (let i = 0; i < courses.length; i++) {
@@ -309,78 +209,51 @@ export default {
 					let lec = sb.lectures.length > 0,
 						tut = sb.tutorials.length > 0,
 						lab = sb.labs.length > 0;
-					if (lec) {
-						lec = sb.lectures[0];
-						let timings = lec.timings;
-						let curDtCode = this.daysMapper[curDt.getDay()];
-						let hasClass = timings.findIndex((it) => it.dayCode === curDtCode);
-						if (hasClass >= 0) {
-							let classHour = timings[hasClass].time;
-							let [s, e] = classHour.split(' - ');
-							let startEvent = `${curDt.toISOString().substr(0, 10)} ${s}`;
-							let endEvent = `${curDt.toISOString().substr(0, 10)} ${e}`;
-
-							let evData = {
-								start: startEvent,
-								end: endEvent,
-								color: 'green',
-								name: `${sb.courseCode} - ${lec.section}`,
-								details: `${sb.courseName} - ${lec.instructors.join(', ')}`,
-							};
-
-							events.push(evData);
-						}
-					}
-					if (tut) {
-						tut = sb.tutorials[0];
-						let timings = tut.timings;
-						let curDtCode = this.daysMapper[curDt.getDay()];
-						let hasClass = timings.findIndex((it) => it.dayCode === curDtCode);
-						if (hasClass >= 0) {
-							let classHour = timings[hasClass].time;
-							let [s, e] = classHour.split(' - ');
-							let startEvent = `${curDt.toISOString().substr(0, 10)} ${s}`;
-							let endEvent = `${curDt.toISOString().substr(0, 10)} ${e}`;
-
-							let evData = {
-								start: startEvent,
-								end: endEvent,
-								color: 'orange',
-								name: `${sb.courseCode} - ${tut.section}`,
-								details: `${sb.courseName} - ${tut.instructors.join(', ')}`,
-							};
-
-							events.push(evData);
-						}
-					}
-					if (lab) {
-						lab = sb.labs[0];
-						let timings = lab.timings;
-						let curDtCode = this.daysMapper[curDt.getDay()];
-						let hasClass = timings.findIndex((it) => it.dayCode === curDtCode);
-						if (hasClass >= 0) {
-							let classHour = timings[hasClass].time;
-							let [s, e] = classHour.split(' - ');
-							let startEvent = `${curDt.toISOString().substr(0, 10)} ${s}`;
-							let endEvent = `${curDt.toISOString().substr(0, 10)} ${e}`;
-
-							let evData = {
-								start: startEvent,
-								end: endEvent,
-								color: 'deep-purple',
-								name: `${sb.courseCode} - ${lab.section}`,
-								details: `${sb.courseName} - ${lab.instructors.join(', ')}`,
-							};
-
-							events.push(evData);
-						}
-					}
+					if (lec) events.push(...this.setSlots(sb, curDt, 'lectures'));
+					if (tut) events.push(...this.setSlots(sb, curDt, 'tutorials'));
+					if (lab) events.push(...this.setSlots(sb, curDt, 'labs'));
 				}
 			}
 			this.events = events;
 		},
-		rnd(a, b) {
-			return Math.floor((b - a + 1) * Math.random()) + a;
+		setSlots(course, date, type) {
+			let slots = [];
+			let currSlot = course[type][0];
+			let timings = currSlot.timings;
+			let curDtCode = this.daysMapper[date.getDay()];
+			let hasClass = timings.findIndex((it) => it.dayCode === curDtCode);
+			if (hasClass >= 0) {
+				let classHour = timings[hasClass].time;
+				let [s, e] = classHour.split(' - ');
+				let startEvent = `${date.toISOString().substr(0, 10)} ${s}`;
+				let endEvent = `${date.toISOString().substr(0, 10)} ${e}`;
+
+				let instructorsList = ``;
+				currSlot.instructors.forEach(
+					(it) => (instructorsList += `<li>${it}</li>`)
+				);
+
+				let evData = {
+					start: startEvent,
+					end: endEvent,
+					color: this.colorsMapper[type],
+					name: `${course.courseCode}`,
+					title: `${course.courseName}`,
+					details: `
+						<h4>${this.typesMapper[type]} Section - ${currSlot.section}</h4>
+						<h4>Instructor(s)</h4>
+						<ul>
+							${instructorsList}
+						</ul>
+						<h4>Comprehensive Exam: ${moment(course.comprehensiveExamDate).format(
+							'Do MMM,  h:mm A'
+						)}</h4>
+						<h4>Course IC: ${course.IC}</h4>
+					`,
+				};
+				slots.push(evData);
+			}
+			return slots;
 		},
 	},
 };
