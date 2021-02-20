@@ -15,6 +15,7 @@ const insertData = async () => {
 		let dbSnap = await db.collection('courses').add(myCourses[i]);
 		console.log(dbSnap.id);
 	}
+	process.exit(1);
 };
 
 insertData();
